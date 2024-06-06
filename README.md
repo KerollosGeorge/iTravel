@@ -19,6 +19,7 @@
 <li>User profile management</li>
 <li>Admin panel for managing hotels, bookings, and users</li>
 <li>Payment with Paypal</li>
+<li>Light Mode and Dark Mode</li>
 </br>
 <h3>Technologies Used</h3>
 <li>Frontend: React.js, Tailwind </li>
