@@ -19,10 +19,10 @@ import { hotelsData } from "./Hotels_data.js";
 import Hotel from "./models/Hotel.js";
 import bodyParser from "body-parser";
 import { upload } from "./utils/uploadImages.js";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+// import { dirname } from "path";
+// import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 dotenv.config();
 
@@ -86,9 +86,10 @@ app.use("/api/payment", paymentRoute);
 
 //Public Images
 app.use(express.static("public"));
-app.use(express.static("../client/build"));
-app.get("*", (req, res) => {
-  res.sendFile(`${__dirname}/client/build/index.html`);
+// app.use(express.static("../client/build"));
+app.get("/", (req, res) => {
+  res.send("Welcome to iTravel");
+  // res.sendFile(`${__dirname}/client/build/index.html`);
 });
 
 //error handler
