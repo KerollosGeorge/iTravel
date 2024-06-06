@@ -19,7 +19,10 @@ import { hotelsData } from "./Hotels_data.js";
 import Hotel from "./models/Hotel.js";
 import bodyParser from "body-parser";
 import { upload } from "./utils/uploadImages.js";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 dotenv.config();
 
@@ -52,9 +55,7 @@ app.use(express.json());
   })
 ); */
 app.use(xss());
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -85,6 +86,10 @@ app.use("/api/payment", paymentRoute);
 
 //Public Images
 app.use(express.static("public"));
+app.use(express.static("../client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`);
+});
 
 //error handler
 app.use((err, req, res, next) => {
@@ -98,7 +103,8 @@ app.use((err, req, res, next) => {
     stack: err.stack,
   });
 });
-const PORT = process.env.PORT;
+
+const PORT = process.env.PORT || 8000;
 const start = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
