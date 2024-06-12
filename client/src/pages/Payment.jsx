@@ -2,6 +2,7 @@ import axios from "axios";
 import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Navbar } from "../components/Navbar";
 
 export const Payment = () => {
   const location = useLocation();
@@ -131,61 +132,86 @@ export const Payment = () => {
         : selectedRooms.filter((item) => item !== value)
     );
   };
-  // console.log(searchData);
+  console.log(searchData);
   return (
-    <div className=" relative ">
-      {msg && notHotel === false && (
-        <p className=" absolute top-5 left-[40%]">{msg}</p>
-      )}
-      <h1>Details</h1>
-      <p>
-        Name:{" "}
-        {searchData.item.type === "Hotel"
-          ? bookingData.title
-          : searchData.item.HotelName}
-      </p>
-      <p>
-        from:{" "}
-        {new Date(searchData.dates?.[0].startDate).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}{" "}
-        to:{" "}
-        {new Date(searchData.dates?.[0].endDate).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </p>
-      <p>Price: {price} per day</p>
-      {totalAmount && (
-        <p>
-          Total Amount: {totalAmount}
-          {searchData.item.type === "Hotel" && (
-            <> for {searchData.options.room} rooms</>
+    <div className=" w-full ">
+      <Navbar />
+
+      <div className=" relative w-full flex items-center ">
+        {msg && notHotel === false && (
+          <p className=" absolute top-5 left-[40%]">{msg}</p>
+        )}
+        <div className="w-[40%] shadow-lg shadow-[gray] mt-[45px] ml-[50px] p-5 rounded-md  flex flex-col gap-5">
+          <h1 className="font-bold text-[30px]">Details</h1>
+          <p>
+            Name:{" "}
+            {searchData.item.type === "Hotel"
+              ? bookingData.title
+              : searchData.item.HotelName}
+          </p>
+          <p>
+            from:{" "}
+            {new Date(searchData.dates?.[0].startDate).toLocaleDateString(
+              "en-US",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )}{" "}
+            to:{" "}
+            {new Date(searchData.dates?.[0].endDate).toLocaleDateString(
+              "en-US",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }
+            )}
+          </p>
+          <p>Price: {price} per day</p>
+          {totalAmount && (
+            <p>
+              Total Amount: {totalAmount}
+              {searchData.item.type === "Hotel" && (
+                <>
+                  {" "}
+                  for {searchData.options.room}{" "}
+                  {searchData.options.room > 1 ? "rooms" : "room"} ,for{" "}
+                  {new Date(searchData.dates?.[0].endDate.getDate()) -
+                    new Date(searchData.dates?.[0].startDate.getDate()) +
+                    1}{" "}
+                  {new Date(searchData.dates?.[0].endDate.getDate()) -
+                    new Date(searchData.dates?.[0].startDate.getDate()) +
+                    1 >
+                  1
+                    ? "Nights"
+                    : "Night"}
+                </>
+              )}
+            </p>
           )}
-        </p>
-      )}
-      {searchData.item.type === "Hotel" && (
-        <div className="flex items-center gap-x-5">
-          Select your Room(s)
-          {bookingData.roomNumbers?.map((roomNumber) => {
-            return (
-              <div>
-                <label>{roomNumber.number}</label>
-                <input
-                  type="checkbox"
-                  value={roomNumber._id}
-                  onChange={handleSelect}
-                  disabled={roomNumber.unavailableDates?.length > 0}
-                />
-              </div>
-            );
-          })}
+          {searchData.item.type === "Hotel" && (
+            <div className="flex items-center gap-x-5">
+              Select your {searchData.options.room > 1 ? "Rooms" : "Room"}
+              {bookingData.roomNumbers?.map((roomNumber) => {
+                return (
+                  <div>
+                    <label>{roomNumber.number}</label>
+                    <input
+                      type="checkbox"
+                      value={roomNumber._id}
+                      onChange={handleSelect}
+                      disabled={roomNumber.unavailableDates?.length > 0}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {(roomNumbers || notHotel === true) && <div ref={paypal}></div>}
         </div>
-      )}
-      {(roomNumbers || notHotel === true) && <div ref={paypal}></div>}
+      </div>
     </div>
   );
 };
