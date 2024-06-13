@@ -33,34 +33,34 @@
 <li>Node.js and npm installed</li>
 <li>MongoDB installed and running</li>
 <h5>Steps</h5>
-<ul>Clone the repository</ul>
+<ul>Clone the repository
 <li> git clone  https://github.com/KerollosGeorge/iTravel.git</li>
-<li>cd iTravel</li>
-<ul>Install backend dependencies</ul>
+<li>cd iTravel</li></ul>
+<ul>Install backend dependencies
 <li>cd api</li>
-<li>npm install</li>
-<ul>Install frontend dependencies for client</ul>
+<li>npm install</li></ul>
+<ul>Install frontend dependencies for client
 <li>cd client</li>
-<li>npm install</li>
-<ul>Install frontend dependencies for admin</ul>
+<li>npm install</li></ul>
+<ul>Install frontend dependencies for admin
 <li>cd admin</li>
-<li>npm install</li>
-<ul>Set up environment variables</ul>
+<li>npm install</li></ul>
+<ul>Set up environment variables
 Create a .env file in the backend directory and add the following:
 <li>MONGO_URI=your_mongodb_connection_string</li>
 <li>PORT = your port</li>
 <li>JWT_SECRET=your_jwt_secret</li>
 <li>PAYPAL_MODE="sandbox"</li>
 <li>PAYPAL_CLIENT_KEY = "your client key"</li>
-<li>PAYPAL_SECRET_KEY = "your secret key"</li>
-<ul>Run the application</ul>
+<li>PAYPAL_SECRET_KEY = "your secret key"</li></ul>
+<ul>Run the application
 Open three terminal windows:
 <li>cd api
 npm start</li>
 <li>cd client
 npm start</li>
 <li>cd admin
-npm start</li>
+npm start</li></ul>
 </br>
 <h3>Usage</h3>
 <li>Register and log in as a user</li>
@@ -88,13 +88,13 @@ npm start</li>
 <li>GET /api/bookings/user/- Get bookings for a specific user</li>
 <li>DELETE /api/bookings/- Cancel a booking</li></br>
 <h3>Contributing</h3>
-<ul>Contributions are welcome! Please follow these steps:</ul>
+<ul>Contributions are welcome! Please follow these steps:
 <li>Fork the repository</li>
 <li>Create a new branch (git checkout -b feature-branch)</li>
 <li>Make your changes</li>
 <li>Commit your changes (git commit -m 'Add some feature')</li>
 <li>Push to the branch (git push origin feature-branch)</li>
-<li>Open a pull request</li></br>
+<li>Open a pull request</li></ul></br>
 <h3>Contact</h3>
 <li>Kerollos George - kerollos.george1@gmail.com</li>
 <li>GitHub - KerollosGeorge </li></br></br>
