@@ -8,17 +8,17 @@ import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import xss from "xss-clean";
 //routes
-import authRoute from "../routes/auth.js";
-import userRoute from "../routes/user.js";
-import hotelsRoute from "../routes/hotel.js";
-import roomsRoute from "../routes/room.js";
-import reviewRoute from "../routes/review.js";
-import paymentRoute from "../routes/payment.js";
+import authRoute from "./routes/auth.js";
+import userRoute from "./routes/user.js";
+import hotelsRoute from "./routes/hotel.js";
+import roomsRoute from "./routes/room.js";
+import reviewRoute from "./routes/review.js";
+import paymentRoute from "./routes/payment.js";
 
-import { hotelsData } from "../Hotels_data.js";
-import Hotel from "../models/Hotel.js";
+import { hotelsData } from "./Hotels_data.js";
+import Hotel from "./models/Hotel.js";
 import bodyParser from "body-parser";
-import { upload } from "../utils/uploadImages.js";
+import { upload } from "./utils/uploadImages.js";
 // import { dirname } from "path";
 // import { fileURLToPath } from "url";
 
