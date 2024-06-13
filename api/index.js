@@ -109,9 +109,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 8000;
 const start = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://kerollosgeorge1:kero1842001@cluster0.1lldj1l.mongodb.net/booking?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("connected to mongoDB.");
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
