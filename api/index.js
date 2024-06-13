@@ -89,7 +89,7 @@ app.use("/api/payment", paymentRoute);
 app.use(express.static("public"));
 // app.use(express.static("../client/build"));
 app.get("/", (req, res) => {
-  res.send("Welcome to iTravel");
+  res.send("Welcome to iTravel apis");
   // res.sendFile(`${__dirname}/client/build/index.html`);
 });
 
