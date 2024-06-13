@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import Hotel from "../models/Hotel.js";
 import User from "../models/User.js";
-import Review from "../models/review.js";
+import Review from "../models/Review.js";
 import { CreateError } from "../utils/customError.js";
 
 //Add Review for a specific hotel ==> Create
@@ -286,7 +286,7 @@ export const GetHotelReviews = async (req, res, next) => {
 export const GetUserFromReviewID = async (req, res, next) => {
   const reviewId = req.params.reviewId;
   try {
-    const user = await User.findOne({ reviews: reviewId });
+    const user = await User.findOne({ reviews: { $in: [reviewId] } });
     if (!user) return res.status(StatusCodes.NOT_FOUND).json("No user found");
     res.status(StatusCodes.OK).json(user);
   } catch (err) {

@@ -1,7 +1,7 @@
 import Hotel from "../models/Hotel.js";
 import Room from "../models/Room.js";
 import { StatusCodes } from "http-status-codes";
-import Review from "../models/review.js";
+import Review from "../models/Review.js";
 import path from "path";
 import fs from "fs";
 // 1) user accessability:

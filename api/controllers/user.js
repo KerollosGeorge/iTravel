@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
-import Review from "../models/review.js";
+import Review from "../models/Review.js";
 import { CreateError } from "../utils/customError.js";
 
 //search for all users in the system
