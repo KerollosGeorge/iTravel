@@ -50,7 +50,7 @@ router.delete("/:userId/:reviewId", verifyUser,  DeleteSiteReview);
 //view
 
 //get user from review id
-// router.get("/:reviewId", GetUserFromReviewID);
+router.get("/:reviewId", GetUserFromReviewID);
 
 router.get("/review/:reviewId", GetReview);
 

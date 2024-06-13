@@ -283,7 +283,7 @@ export const GetHotelReviews = async (req, res, next) => {
 };
 
 //get user from reveiewId
-/* export const GetUserFromReviewID = async (req, res, next) => {
+export const GetUserFromReviewID = async (req, res, next) => {
   const reviewId = req.params.reviewId;
   try {
     const user = await User.findOne({ reviews: reviewId });
@@ -292,7 +292,7 @@ export const GetHotelReviews = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-}; */
+};
 //get a specifi review
 export const GetReview = async (req, res, next) => {
   const reviewId = req.params.reviewId;
