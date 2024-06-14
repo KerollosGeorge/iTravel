@@ -39,6 +39,7 @@ app.use(
       "http://localhost:3001",
       "http://localhost:3002",
       "https://deploy-mern-1whq.vercel.app",
+      "https://itravel-gamma.vercel.app/"
     ], // Specify an array of allowed origins
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
