@@ -64,8 +64,8 @@ export const SearchBar = () => {
           placeholder={!err ? "Where are you going?" : "Add Your Destination"}
           className={
             !err
-              ? "outline-none indent-1 py-2 px-3 border-[1px] border-gray-800 rounded-sm bg-transparent  max-sm:w-[98%] max-sm:ml-[-4px]"
-              : " border-[1px] border-red-600 indent-1 py-2 px-3 placeholder-red-600 max-sm:w-full"
+              ? "outline-none indent-1 py-2 px-3 border-[1px] border-gray-800 rounded-sm bg-transparent  max-sm:w-[265px] "
+              : " border-[1px] border-red-600 indent-1 py-2 px-3 placeholder-red-600 max-sm:w-[265px]"
           }
           onChange={(e) => setDestination(e.target.value)}
         />
@@ -93,7 +93,7 @@ export const SearchBar = () => {
         <div className="relative max-sm:w-full">
           <span
             onClick={() => setOpenOptions(!openOptions)}
-            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 py-2 px-2 max-sm:px-[35px] max-sm:ml-0"
+            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 p-2 max-sm:px-[35px] max-sm:ml-[20px]"
           >
             {`${options.adult} adult · ${options.children} children · ${options.room} room`}
           </span>
