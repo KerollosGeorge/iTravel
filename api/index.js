@@ -40,7 +40,7 @@ app.use(
       "http://localhost:3002", // Another local URL if applicable
       "https://deploy-mern-1whq.vercel.app", // Another deployed URL if applicable
       "https://itravel-gamma.vercel.app", // Clinet URL
-      "https://itravel-admin.vercel.app/", // Admin URL
+      "https://itravel-admin.vercel.app", // Admin URL
     ], // Specify an array of allowed origins
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,

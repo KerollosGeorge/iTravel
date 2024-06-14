@@ -41,7 +41,7 @@ export const Login = () => {
         });
         navigate("/");
       } catch (error) {
-        dispatch({ type: "LOGIN_FAILED", payload: error.response.data });
+        dispatch({ type: "LOGIN_FAILED", payload: error?.response?.data });
         setErr(error.response.data.message);
         const errorTime = setTimeout(() => {
           setErr("");
