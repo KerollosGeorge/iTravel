@@ -72,7 +72,7 @@ export const SearchBar = () => {
         <div className="relative">
           <span
             onClick={() => setOpenDate(!openDate)}
-            className=" cursor-pointer  text-gray-400 border-[1px] border-gray-800 p-2  max-sm:px-[38px] max-sm:ml-[-4px]"
+            className=" cursor-pointer  text-gray-400 border-[1px] border-gray-800 p-2  max-sm:px-[38px] max-sm:ml-[-2px]"
           >
             {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
               date[0].endDate,
@@ -93,7 +93,7 @@ export const SearchBar = () => {
         <div className="relative max-sm:w-full">
           <span
             onClick={() => setOpenOptions(!openOptions)}
-            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 p-2 max-sm:px-[35px] max-sm:ml-[25px]"
+            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 p-2 max-sm:px-[37px] max-sm:ml-[25px]"
           >
             {`${options.adult} adult · ${options.children} children · ${options.room} room`}
           </span>
