@@ -35,11 +35,12 @@ mongoose.connection.on("disconnected", () => {
 app.use(
   cors({
     origin: [
-       "http://localhost:3000",  // Your local development URL
-      "http://localhost:3001",  // Another local URL if applicable
-      "http://localhost:3002",  // Another local URL if applicable
-      "https://deploy-mern-1whq.vercel.app",  // Another deployed URL if applicable
-      "https://itravel-gamma.vercel.app"  // Your deployed frontend URL
+      "http://localhost:3000", // Your local development URL
+      "http://localhost:3001", // Another local URL if applicable
+      "http://localhost:3002", // Another local URL if applicable
+      "https://deploy-mern-1whq.vercel.app", // Another deployed URL if applicable
+      "https://itravel-gamma.vercel.app", // Clinet URL
+      "https://itravel-admin.vercel.app/", // Admin URL
     ], // Specify an array of allowed origins
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
