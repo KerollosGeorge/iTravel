@@ -41,7 +41,7 @@ export const EditHotel = () => {
   const [imagesArrayCheck, setImagesArrayCheck] = useState([]);
 
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/hotels/find/${hotelId}`
+    `https://itravel-apis.vercel.app/api/hotels/find/${hotelId}`
   );
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export const EditHotel = () => {
         formData.append("type", type);
         formData.append("featured", featured);
         const res = await axios.put(
-          `http://localhost:8000/api/hotels/${hotelId}`,
+          `https://itravel-apis.vercel.app/api/hotels/${hotelId}`,
           formData,
           {
             headers: { "content-type": "multipart/form-data" },
@@ -145,7 +145,7 @@ export const EditHotel = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   const Next = () => {
     if (imagesArray.length > 0) {

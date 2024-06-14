@@ -19,7 +19,7 @@ export const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const { data, loading } = useFetch(
-    `http://localhost:8000/api/hotels/find/${id}`
+    `https://itravel-apis.vercel.app/api/hotels/find/${id}`
   );
   const [disabled, setDisabled] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -29,7 +29,7 @@ export const Hotel = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   const Next = () => {
     setStart((start + 1) % data?.photos?.length);

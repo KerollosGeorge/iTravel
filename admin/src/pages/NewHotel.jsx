@@ -68,7 +68,7 @@ export const NewHotel = () => {
         formData.append("featured", featured);
 
         const res = await axios.post(
-          "http://localhost:8000/api/hotels",
+          "https://itravel-apis.vercel.app/api/hotels",
           formData,
           {
             headers: { "content-type": "multipart/form-data" },

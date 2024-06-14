@@ -54,7 +54,7 @@ export const Profile = () => {
         return () => clearTimeout(errorTime);
       } else {
         const res = await axios.put(
-          `http://localhost:8000/api/user/${user._id}`,
+          `https://itravel-apis.vercel.app/api/user/${user._id}`,
           { firstName, lastName, email, phone, country, city }
         );
         updateUser(res.data.updateUser);

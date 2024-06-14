@@ -8,7 +8,7 @@ export const Review = () => {
   const location = useLocation();
   const reviewId = location.pathname.split("/")[2];
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/reviews/review/${reviewId}`
+    `https://itravel-apis.vercel.app/api/reviews/review/${reviewId}`
   );
 
   return (

@@ -9,7 +9,7 @@ export const UserInfo = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/user/${userId}`
+    `https://itravel-apis.vercel.app/api/user/${userId}`
   );
   console.log(data.isAdmin);
   if (loading) {

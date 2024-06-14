@@ -16,7 +16,9 @@ export const Widget = ({ type }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:8000/api/user/usersCount");
+      const res = await axios.get(
+        "https://itravel-apis.vercel.app/api/user/usersCount"
+      );
       setCounts(res.data);
     };
 
@@ -47,7 +49,7 @@ export const Widget = ({ type }) => {
       break;
     case "orders":
       {
-        //   const counts = useFetch(`http://localhost:8000/api/user/usersCount`);
+        //   const counts = useFetch(`https://itravel-apis.vercel.app/api/user/usersCount`);
         data = {
           type: "orders",
           title: "ORDERS",
@@ -69,7 +71,7 @@ export const Widget = ({ type }) => {
       break;
     case "earning":
       {
-        //   const counts = useFetch(`http://localhost:8000/api/user/usersCount`);
+        //   const counts = useFetch(`https://itravel-apis.vercel.app/api/user/usersCount`);
         data = {
           type: "earning",
           title: "EARNING",
@@ -91,7 +93,7 @@ export const Widget = ({ type }) => {
       break;
     case "balance":
       {
-        //   const counts = useFetch(`http://localhost:8000/api/user/usersCount`);
+        //   const counts = useFetch(`https://itravel-apis.vercel.app/api/user/usersCount`);
         data = {
           type: "balance",
           title: "BALANCE",

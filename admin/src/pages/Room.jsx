@@ -16,7 +16,7 @@ import { Loading } from "../components/Loading";
 export const Room = () => {
   const { roomId } = useParams();
   const { data, loading } = useFetch(
-    `http://localhost:8000/api/rooms/${roomId}`
+    `https://itravel-apis.vercel.app/api/rooms/${roomId}`
   );
 
   const [start, setStart] = useState(0);
@@ -25,7 +25,7 @@ export const Room = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   const Next = () => {
     setStart((start + 1) % data?.photos?.length);

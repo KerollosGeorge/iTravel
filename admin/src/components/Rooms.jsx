@@ -13,11 +13,11 @@ export const Rooms = ({ id }) => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   // Using useFetch hook to fetch data from the API
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/hotels/room/${id}`
+    `https://itravel-apis.vercel.app/api/hotels/room/${id}`
   );
   const navigate = useNavigate();
   const { darkMode } = useContext(darkModeCotext);

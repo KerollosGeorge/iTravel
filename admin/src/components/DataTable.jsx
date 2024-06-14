@@ -13,8 +13,8 @@ export const DataTable = ({ columns }) => {
   const path = location.pathname.split("/")[1];
   const { data, loading, error } = useFetch(
     path !== "hotels"
-      ? `http://localhost:8000/api/${path}`
-      : `http://localhost:8000/api/${path}/all-hotels`
+      ? `https://itravel-apis.vercel.app/api/${path}`
+      : `https://itravel-apis.vercel.app/api/${path}/all-hotels`
   );
   const [list, setList] = useState();
   const { darkMode } = useContext(darkModeCotext);
@@ -55,7 +55,7 @@ export const DataTable = ({ columns }) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/${path}/${removedId}`
+        `https://itravel-apis.vercel.app/api/${path}/${removedId}`
       );
       setMsg(res.data);
       setList(list.filter((item) => item._id !== removedId));

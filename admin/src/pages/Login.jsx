@@ -32,7 +32,7 @@ export const Login = () => {
       dispatch({ type: "LOGIN_StART" });
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/auth/adminLogin",
+          "https://itravel-apis.vercel.app/api/auth/adminLogin",
           cred
         );
         dispatch({

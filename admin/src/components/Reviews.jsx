@@ -4,7 +4,7 @@ import { StarRating } from "./StarsRating";
 
 export const Reviews = ({ reviewId }) => {
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/reviews/review/${reviewId}`
+    `https://itravel-apis.vercel.app/api/reviews/review/${reviewId}`
   );
   return (
     <div>

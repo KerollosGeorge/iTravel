@@ -31,7 +31,7 @@ export const EditRoom = () => {
   const [imagesArrayCheck, setImagesArrayCheck] = useState([]);
 
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/rooms/${roomId}`
+    `https://itravel-apis.vercel.app/api/rooms/${roomId}`
   );
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export const EditRoom = () => {
         formData.append("desc", desc);
         formData.append("roomNumbers", JSON.stringify(roomNumbersArray));
         const res = await axios.put(
-          `http://localhost:8000/api/rooms/${roomId}`,
+          `https://itravel-apis.vercel.app/api/rooms/${roomId}`,
           formData,
           {
             headers: { "content-type": "multipart/form-data" },
@@ -128,7 +128,7 @@ export const EditRoom = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   const Next = () => {
     if (imagesArray.length > 0) {

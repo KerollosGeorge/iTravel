@@ -22,7 +22,7 @@ export const NewRoom = () => {
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/hotels?type=Hotel`
+    `https://itravel-apis.vercel.app/api/hotels?type=Hotel`
   );
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ export const NewRoom = () => {
         formData.append("HotelName", HotelName);
         formData.append("roomNumbers", JSON.stringify(roomNumbersArray));
         const res = await axios.post(
-          `http://localhost:8000/api/rooms`,
+          `https://itravel-apis.vercel.app/api/rooms`,
           formData,
           {
             headers: { "content-type": "multipart/form-data" },

@@ -25,7 +25,7 @@ export const ForgetPassword = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/auth/forget_password",
+          "https://itravel-apis.vercel.app/api/auth/forget_password",
           email
         );
         if (response.data.Status === "Success") {
