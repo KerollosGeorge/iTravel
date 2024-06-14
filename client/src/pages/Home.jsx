@@ -52,7 +52,7 @@ export const Home = () => {
           rooms in your destination..
         </p>
       </div>
-      <div className=" absolute bottom-0 max-md:w-full outline-none border-none z-10">
+      <div className="w-full absolute bottom-0 max-md:w-full outline-none border-none z-10">
         <SearchBar />
       </div>
       <PropertyList />

@@ -57,14 +57,14 @@ export const SearchBar = () => {
           : "w-full flex justify-center items-center mt-3 bg-white rounded-md border-none outline-none shadow-md shadow-[gray]"
       }
     >
-      <div className=" w-[1000px] flex gap-0 rounded-md p-9 justify-around items-center max-md:w-[70%] max-md:flex max-md:flex-col max-md:gap-6 transition-all ">
+      <div className=" w-[1000px] flex gap-0 rounded-md p-9 justify-around items-center max-md:w-full max-md:flex max-md:flex-col max-md:gap-6 transition-all ">
         <input
           type="text"
           name="dest"
           placeholder={!err ? "Where are you going?" : "Add Your Destination"}
           className={
             !err
-              ? "outline-none indent-1 py-2 px-3 border-[1px] border-gray-800 rounded-sm bg-transparent  max-sm:w-full"
+              ? "outline-none indent-1 py-2 px-3 border-[1px] border-gray-800 rounded-sm bg-transparent  max-sm:w-[98%] max-sm:ml-[-4px]"
               : " border-[1px] border-red-600 indent-1 py-2 px-3 placeholder-red-600 max-sm:w-full"
           }
           onChange={(e) => setDestination(e.target.value)}
@@ -72,7 +72,7 @@ export const SearchBar = () => {
         <div className="relative">
           <span
             onClick={() => setOpenDate(!openDate)}
-            className=" cursor-pointer  text-gray-400 border-[1px] border-gray-800 p-2  max-sm:px-[38px]"
+            className=" cursor-pointer  text-gray-400 border-[1px] border-gray-800 p-2  max-sm:px-[38px] max-sm:ml-[-4px]"
           >
             {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
               date[0].endDate,
@@ -93,7 +93,7 @@ export const SearchBar = () => {
         <div className="relative max-sm:w-full">
           <span
             onClick={() => setOpenOptions(!openOptions)}
-            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 py-2 px-2  max-sm:px-[35px] max-sm:ml-0"
+            className="cursor-pointer text-gray-400 border-[1px] border-gray-800 py-2 px-2 max-sm:px-[35px] max-sm:ml-0"
           >
             {`${options.adult} adult · ${options.children} children · ${options.room} room`}
           </span>
