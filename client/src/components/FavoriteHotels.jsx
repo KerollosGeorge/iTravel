@@ -16,7 +16,7 @@ import { Loading } from "./Loading";
 export const FavoriteHotels = ({ id }) => {
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/hotels/find/${id}`
+    `https://itravel-apis.vercel.app/api/hotels/find/${id}`
   );
   const [reviewData, setReviewData] = useState([]);
   const [openReview, setOpenReviews] = useState(false);
@@ -26,7 +26,7 @@ export const FavoriteHotels = ({ id }) => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   useEffect(() => {
     const Favorite = async () => {
@@ -39,7 +39,7 @@ export const FavoriteHotels = ({ id }) => {
           const reviewsData = await Promise.all(
             data?.reviews.map(async (item) => {
               const Reviews = await axios.get(
-                `http://localhost:8000/api/reviews/review/${item}`
+                `https://itravel-apis.vercel.app/api/reviews/review/${item}`
               );
               return { review: Reviews.data };
             })
@@ -55,7 +55,7 @@ export const FavoriteHotels = ({ id }) => {
   axios.defaults.withCredentials = true;
   const addFavorite = async () => {
     const res = await axios.put(
-      `http://localhost:8000/api/user/favorite/${user._id}/${data._id}`
+      `https://itravel-apis.vercel.app/api/user/favorite/${user._id}/${data._id}`
     );
     if (res.data.msg === "Added to Favorites") {
       setFavorite(true);

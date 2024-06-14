@@ -5,7 +5,9 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { Loading } from "./Loading";
 export const PopularCities = () => {
-  const { data, loading } = useFetch("http://localhost:8000/api/hotels");
+  const { data, loading } = useFetch(
+    "https://itravel-apis.vercel.app/api/hotels"
+  );
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(5);
   const [disabled, setDisabled] = useState(true);
@@ -14,7 +16,7 @@ export const PopularCities = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
 
   const Next = () => {

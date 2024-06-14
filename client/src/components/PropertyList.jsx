@@ -4,7 +4,7 @@ import { darkModeContext } from "../context/DarkMoodContext";
 
 export const PropertyList = () => {
   const { data, loading } = useFetch(
-    "http://localhost:8000/api/hotels/countByType"
+    "https://itravel-apis.vercel.app/api/hotels/countByType"
   );
   const images = [
     "../images/propertyList/hotel.jpg",

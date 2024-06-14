@@ -28,7 +28,7 @@ export const Payment = () => {
   useEffect(() => {
     if (searchData.item.type === "Hotel") {
       axios
-        .get(`http://localhost:8000/api/rooms/${id}`)
+        .get(`https://itravel-apis.vercel.app/api/rooms/${id}`)
         .then((response) => setBookingData(response.data))
         .catch((error) => console.log(error));
     }
@@ -94,7 +94,7 @@ export const Payment = () => {
                 await Promise.all(
                   selectedRooms.map(async (roomId) => {
                     const res = await axios.put(
-                      `http://localhost:8000/api/rooms/availability/${roomId}`,
+                      `https://itravel-apis.vercel.app/api/rooms/availability/${roomId}`,
                       { date }
                     );
                     console.log(res.data);
@@ -103,7 +103,7 @@ export const Payment = () => {
                 );
               } else {
                 const res = await axios.put(
-                  `http://localhost:8000/api/hotels/availability/${id}`,
+                  `https://itravel-apis.vercel.app/api/hotels/availability/${id}`,
                   { date }
                 );
                 console.log(res.data);

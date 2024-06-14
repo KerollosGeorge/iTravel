@@ -6,7 +6,7 @@ import { darkModeContext } from "../context/DarkMoodContext";
 
 export const SiteReviews = () => {
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/reviews/site?limit=3`
+    `https://itravel-apis.vercel.app/api/reviews/site?limit=3`
   );
 
   const [reviewData, setReviewData] = useState([]);
@@ -18,7 +18,7 @@ export const SiteReviews = () => {
           const reviewsData = await Promise.all(
             data.map(async (item) => {
               const userResponse = await axios.get(
-                `http://localhost:8000/api/reviews/${item._id}`
+                `https://itravel-apis.vercel.app/api/reviews/${item._id}`
               );
               return { review: item, user: userResponse.data };
             })

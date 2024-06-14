@@ -25,7 +25,7 @@ export const Review = () => {
     } else {
       try {
         const res = await axios.post(
-          `http://localhost:8000/api/reviews/${user._id}/${hotelId}`,
+          `https://itravel-apis.vercel.app/api/reviews/${user._id}/${hotelId}`,
           review
         );
         if (res.data.msg === "Success") {

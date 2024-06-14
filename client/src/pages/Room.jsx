@@ -18,7 +18,7 @@ export const Room = () => {
   const location = useLocation();
   const { searchData } = location.state;
   const { data, loading } = useFetch(
-    `http://localhost:8000/api/rooms/${roomId}`
+    `https://itravel-apis.vercel.app/api/rooms/${roomId}`
   );
   const [start, setStart] = useState(0);
   const [disabled, setDisabled] = useState(true);
@@ -27,7 +27,7 @@ export const Room = () => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   const Next = () => {
     setStart((start + 1) % data?.photos?.length);
@@ -43,7 +43,7 @@ export const Room = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/rooms/findHotel/${roomId}`)
+      .get(`https://itravel-apis.vercel.app/api/rooms/findHotel/${roomId}`)
       .then((response) => setItem(response.data?.[0]));
     if (start === data?.photos?.length) {
       setStart(data?.photos[0]);

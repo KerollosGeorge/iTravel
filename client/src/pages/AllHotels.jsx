@@ -32,9 +32,9 @@ export const AllHotels = () => {
   const [showMore, setshowMore] = useState(false);
   const [type, setType] = useState("Hotel");
   const { data, loading, error, reFetch } = useFetch(
-    `http://localhost:8000/api/hotels?type=${type}&min=${min || 0}&max=${
-      max || 99999
-    }`
+    `https://itravel-apis.vercel.app/api/hotels?type=${type}&min=${
+      min || 0
+    }&max=${max || 99999}`
   );
 
   const [dataSet, setDataSet] = useState([]);
@@ -43,7 +43,7 @@ export const AllHotels = () => {
     if (destination.length > 0) {
       axios
         .get(
-          `http://localhost:8000/api/hotels?city=${destination}&type=${type}&min=${
+          `https://itravel-apis.vercel.app/api/hotels?city=${destination}&type=${type}&min=${
             min || 0
           }&max=${max || 999}`
         )

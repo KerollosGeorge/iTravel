@@ -17,7 +17,7 @@ export const ReviewUs = ({ open, setOpen }) => {
       //i need if the user has already reviewd before then this message willnot appear to him
       const checkReview = async () => {
         const SiteReviews = await axios.get(
-          `http://localhost:8000/api/user/site/reviews/${user._id}`
+          `https://itravel-apis.vercel.app/api/user/site/reviews/${user._id}`
         );
         if (SiteReviews.data?.length === 0 && open === false) {
           const Review = setTimeout(() => {
@@ -43,10 +43,13 @@ export const ReviewUs = ({ open, setOpen }) => {
       }, 2000);
       return () => clearTimeout(errorTime);
     } else {
-      await axios.post(`http://localhost:8000/api/reviews/${user._id}`, {
-        content: review,
-        rating,
-      });
+      await axios.post(
+        `https://itravel-apis.vercel.app/api/reviews/${user._id}`,
+        {
+          content: review,
+          rating,
+        }
+      );
       setIsReview(true);
       const Done = setTimeout(() => {
         setReview("");

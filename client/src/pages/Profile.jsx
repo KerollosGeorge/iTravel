@@ -14,7 +14,7 @@ import { Loading } from "../components/Loading";
 export const Profile = () => {
   let { user, updateUser } = useContext(AuthContext);
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/user/favorite/${user._id}`
+    `https://itravel-apis.vercel.app/api/user/favorite/${user._id}`
   );
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -66,7 +66,7 @@ export const Profile = () => {
         return () => clearTimeout(errorTime);
       } else {
         const res = await axios.put(
-          `http://localhost:8000/api/user/${user._id}`,
+          `https://itravel-apis.vercel.app/api/user/${user._id}`,
           { firstName, lastName, email, phone, country, city }
         );
         updateUser(res.data.updateUser);

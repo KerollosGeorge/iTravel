@@ -14,12 +14,12 @@ export const Rooms = ({ id, max, searchData }) => {
     if (!photo) return;
     return photo.startsWith("http")
       ? photo
-      : `http://localhost:8000/Images/${photo}`;
+      : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   // Using useFetch hook to fetch data from the API
   // بدل كده ممكن نجيب الداتا عادي وبعدين نعمل اراي فاضيه و نعمل تشيك علي الماكس ف الداتا ولو اقل او يساوي نضيفه ف الاراي و فالاخر نعرض الاراي دي
   const { data, loading, error } = useFetch(
-    `http://localhost:8000/api/hotels/room/${id}?max=${max}&roomNumbers=${searchData?.options?.room}`
+    `https://itravel-apis.vercel.app/api/hotels/room/${id}?max=${max}&roomNumbers=${searchData?.options?.room}`
   );
   const { darkMode } = useContext(darkModeContext);
 

@@ -38,7 +38,7 @@ export const Register = () => {
     } else {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/auth/register",
+          "https://itravel-apis.vercel.app/api/auth/register",
           {
             firstName,
             lastName,
