@@ -15,7 +15,7 @@ export const PropertyList = () => {
   ];
   const { darkMode } = useContext(darkModeContext);
   return (
-    <div className="w-[70%] mt-[30px]">
+    <div className="w-[80%] mt-[30px] max-sm:w-[90%]">
       {loading
         ? "Loading..."
         : data.length > 0 && (
@@ -34,7 +34,7 @@ export const PropertyList = () => {
                     >
                       <img
                         src={img}
-                        className="w-[200px] h-[200px] object-cover rounded-md max-md:h-[200px] max-md:w-full"
+                        className="w-[300px] h-[200px] object-cover rounded-md max-md:h-[200px] max-md:w-full"
                       />
                       <div className="p-1">
                         <h1>{data[i]?.type}</h1>

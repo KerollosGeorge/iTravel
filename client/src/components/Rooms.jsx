@@ -47,8 +47,8 @@ export const Rooms = ({ id, max, searchData }) => {
                   key={room?._id}
                   className={
                     darkMode
-                      ? "w-full bg-[rgb(44,43,43)] flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-[300px]"
-                      : "w-full bg-rose-100 flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-[300px]"
+                      ? "w-full bg-[rgb(44,43,43)] flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-full"
+                      : "w-full bg-rose-100 flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-full"
                   }
                 >
                   <img
@@ -112,8 +112,8 @@ export const Rooms = ({ id, max, searchData }) => {
                     key={room?._id}
                     className={
                       darkMode
-                        ? "w-full bg-[rgb(44,43,43)] flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-[300px]"
-                        : "w-full bg-rose-100 flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-[300px]"
+                        ? "w-full bg-[rgb(44,43,43)] flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-full"
+                        : "w-full bg-rose-100 flex flex-col min-w-[250px]  p-1 border-[1px] border-gray-500 min-h-[300px] max-md:w-full"
                     }
                   >
                     <img

@@ -57,15 +57,15 @@ export const AllHotels = () => {
   };
 
   return (
-    <div className="flex flex-col gap-[50px] w-full items-center">
+    <div className="flex flex-col gap-[50px] w-full items-center min-w-max">
       <Navbar />
 
-      <div className="flex w-[90%] gap-[150px] justify-start max-md:flex max-md:flex-col max-md:gap-7 max-md:items-center max-md:w-full">
+      <div className="flex w-[90%] gap-[150px] max-xl:gap-[50px] justify-start max-lg:flex max-lg:flex-col max-lg:gap-7 max-lg:items-center max-lg:w-full">
         <div
           className={
             darkMode
-              ? " bg-slate-800 rounded-lg flex flex-col p-4 gap-4 h-full mt-6  mb-3 ml-[10%] max-md:mt-0 max-md:ml-0"
-              : " bg-yellow-500 rounded-lg flex flex-col p-4 gap-4 h-full mt-6  mb-3 ml-[10%] max-md:mt-0 max-md:ml-0"
+              ? " bg-slate-800 rounded-lg flex flex-col p-4 gap-4 h-full mt-6  mb-3 ml-[5%] max-md:mt-0 max-md:ml-0"
+              : " bg-yellow-500 rounded-lg flex flex-col p-4 gap-4 h-full mt-6  mb-3 ml-[5%] max-md:mt-0 max-md:ml-0"
           }
         >
           <h1 className="text-2xl font-semibold">Search</h1>

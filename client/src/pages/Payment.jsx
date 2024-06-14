@@ -1,7 +1,7 @@
 import axios from "axios";
 import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
 export const Payment = () => {
@@ -33,6 +33,7 @@ export const Payment = () => {
         .catch((error) => console.log(error));
     }
   }, [id]);
+  const navigate = useNavigate();
 
   const price =
     searchData?.item.type === "Hotel"
@@ -178,11 +179,13 @@ export const Payment = () => {
                   {" "}
                   for {searchData.options.room}{" "}
                   {searchData.options.room > 1 ? "rooms" : "room"} ,for{" "}
-                  {new Date(searchData.dates?.[0].endDate.getDate()) -
-                    new Date(searchData.dates?.[0].startDate.getDate()) +
+                  {(Date.parse(searchData.dates?.[0].endDate) -
+                    Date.parse(searchData.dates?.[0].startDate)) /
+                    (1000 * 3600 * 24) +
                     1}{" "}
-                  {new Date(searchData.dates?.[0].endDate.getDate()) -
-                    new Date(searchData.dates?.[0].startDate.getDate()) +
+                  {(Date.parse(searchData.dates?.[0].endDate) -
+                    Date.parse(searchData.dates?.[0].startDate)) /
+                    (1000 * 3600 * 24) +
                     1 >
                   1
                     ? "Nights"

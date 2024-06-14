@@ -28,12 +28,12 @@ export const Home = () => {
     return () => clearTimeout(time);
   });
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="w-full flex flex-col justify-center items-center ">
       <div
         className={
           darkMode
-            ? " bg-[#222] absolute top-0 w-full z-20"
-            : " absolute top-0 w-full z-20 bg-white"
+            ? "absolute top-0 w-full z-20 bg-[#222]"
+            : "absolute top-0 w-full z-20 bg-white"
         }
       >
         <Navbar />
@@ -42,7 +42,7 @@ export const Home = () => {
       <img
         src={images[start]}
         alt=""
-        className=" relative z-10 w-full self-center top-[80px] h-[615px] grayscale-[10%] brightness-[85%] mb-20"
+        className=" relative z-10 w-full self-center top-[80px] h-[615px] grayscale-[10%] brightness-[85%] mb-20 "
       />
       <div className=" absolute top-[25%] left-[10%] flex flex-col text-white z-10">
         <h1 className="text-5xl font-bold mb-9">Enjoy your Stay ...</h1>

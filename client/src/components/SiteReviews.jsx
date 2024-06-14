@@ -33,7 +33,7 @@ export const SiteReviews = () => {
     }
   }, [data]);
   return (
-    <div className="w-[70%]">
+    <div className="w-[80%]">
       {loading ? (
         "Loading"
       ) : (

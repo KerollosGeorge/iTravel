@@ -1,9 +1,7 @@
 .app.dark {
-  min-width: fit-content;
   width: 100%;
   background-color: #111;
   color: rgb(171, 171, 171);
-  /* min-width: 730px; */
   min-height: 100vh;
 
   .chartGrid {
@@ -75,6 +73,6 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     transition: background-color 5000s;
-    -webkit-text-fill-color: #fff !important;
+    -webkit-text-fill-color: rgb(171, 171, 171);
   }
 }

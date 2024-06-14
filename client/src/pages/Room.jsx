@@ -61,13 +61,13 @@ export const Room = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex flex-col w-[60%] self-center">
+        <div className="flex flex-col w-[60%] self-center max-md:w-[90%]">
           <div className=" relative w-full flex flex-col items-center">
             <img
               crossorigin="anonymous"
               src={getImageSource(data?.photos?.[start])}
               alt={data?.title}
-              className="w-[800px] h-[450px] rounded-2xl max-lg:h-auto min-h-[450px] max-lg:max-h-[400px]"
+              className="w-[800px] h-[450px] rounded-2xl max-lg:h-auto max-lg:max-h-[400px] max-md:h-[300px] max-md:w-full"
             />
             <FontAwesomeIcon
               icon={faCaretRight}

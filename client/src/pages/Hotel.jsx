@@ -61,13 +61,13 @@ export const Hotel = () => {
         <Loading />
       ) : (
         <>
-          <div className="flex flex-col w-[60%] self-center">
+          <div className="flex flex-col w-[60%] self-center max-md:w-[90%]">
             <div className=" relative w-full flex flex-col items-center ">
               <img
                 crossorigin="anonymous"
                 src={getImageSource(data?.photos?.[start])}
                 alt={data?.HotelName}
-                className="w-[800px] h-[450px] rounded-2xl max-lg:h-auto min-h-[450px] max-lg:max-h-[450px]"
+                className="w-[800px] h-[450px] rounded-2xl max-lg:h-auto max-lg:max-h-[450px] max-md:h-[300px] max-md:w-full"
               />
               <FontAwesomeIcon
                 icon={faCaretRight}
@@ -133,7 +133,7 @@ export const Hotel = () => {
             </div>
           </div>
           {data?.type === "Hotel" ? (
-            <div className="flex flex-col w-[80%] self-center p-2 gap-9">
+            <div className="flex flex-col w-full self-center p-2 gap-9 ">
               <h1 className=" text-center text-2xl text-red-400 font-bold">
                 Rooms
               </h1>

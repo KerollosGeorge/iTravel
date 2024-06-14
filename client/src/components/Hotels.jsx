@@ -74,14 +74,14 @@ export const Hotels = ({ item, options, dates, city }) => {
   };
 
   return (
-    <div className=" min-w-[650px] flex gap-4 border-2 border-gray-500 max-md:flex max-md:flex-col max-md:gap-0 max-md:min-w-full">
+    <div className=" min-w-[550px] flex gap-4 border-2 border-gray-500 max-md:flex max-md:flex-col max-md:gap-0 max-md:min-w-full">
       <img
         crossorigin="anonymous"
         src={getImageSource(item?.photos?.[0])}
         alt={item?.HotelName}
-        className="w-[300px] h-[220px] object-cover p-2 max-md:w-full"
+        className="w-[350px]  max-2xl:w-[280px] h-[220px] object-cover p-2 max-md:w-full"
       />
-      <div className="flex flex-col gap-2 p-1 w-[330px] max-md:p-2">
+      <div className="flex flex-col gap-2 p-1 w-[350px] max-2xl:w-[300px] max-md:p-2 max-md:w-[400px]">
         <h3 className=" font-semibold text-xl">{item?.HotelName}</h3>
         <span className="flex gap-1 text-sm">
           {<StarRating rating={item?.rating} />} {item?.rating} Stars{" "}

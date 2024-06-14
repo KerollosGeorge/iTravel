@@ -22,8 +22,8 @@ export const Navbar = () => {
     <nav
       className={
         darkMode
-          ? "w-full shadow-[#333] flex flex-col justify-around items-center shadow-md"
-          : " bg-slate-50 w-full flex flex-col justify-around items-center shadow-md text-[rgb(32,32,32)] "
+          ? "w-full  flex flex-col justify-around items-center shadow-md shadow-[#333]"
+          : "w-full bg-slate-50 flex flex-col justify-around items-center shadow-md shadow-[#333] text-[rgb(32,32,32)] "
       }
     >
       <ReviewUs open={open} setOpen={setOpen} />

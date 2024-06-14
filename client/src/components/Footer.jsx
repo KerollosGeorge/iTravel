@@ -18,7 +18,7 @@ export const Footer = () => {
       />
       <div className="h-[1px] w-[80%] self-center bg-gray-100 mb-5"></div>
       <div className="w-full grid grid-cols-4 place-items-center max-xl:grid max-xl:grid-cols-3 max-xl:place-items-center max-lg:grid max-lg:grid-cols-2  max-md:flex max-md:flex-col max-md:justify-center max-md:items-center">
-        <div className=" flex flex-col gap-3 h-[150px] w-[250px] ">
+        <div className=" flex flex-col gap-3 h-[150px] w-[250px] max-md:w-[400px]">
           <h1 className=" font-semibold text-xl">Contact us</h1>
           <span className="flex gap-3 items-center">
             <FontAwesomeIcon icon={faPhone} />
@@ -34,7 +34,7 @@ export const Footer = () => {
             </p>
           </span>
         </div>
-        <div className=" flex flex-col gap-3 h-[150px] w-[350px]">
+        <div className=" flex flex-col gap-3 h-[150px] w-[350px] max-md:w-[400px] max-md:h-[180px]">
           <h1 className=" font-semibold text-xl">About us</h1>
           <p>
             We are a hotel booking site that is dedicated to providing our
@@ -43,7 +43,7 @@ export const Footer = () => {
             to make that a reality for every one of our customers.
           </p>
         </div>
-        <div className=" flex flex-col gap-3 h-[150px] w-[250px]">
+        <div className=" flex flex-col gap-3 h-[150px] w-[250px] max-md:w-[400px]">
           <h1 className=" font-semibold text-xl">Legal</h1>
           <a className=" cursor-pointer " href="/privacy">
             {" "}
@@ -58,7 +58,7 @@ export const Footer = () => {
             Terms of Use
           </a>
         </div>
-        <div className=" flex flex-col gap-3 h-[200px] bg-[rgb(46,46,46)] p-2 max-xl:ml-[70px]">
+        <div className=" flex flex-col gap-3 h-[200px] bg-[rgb(46,46,46)] p-2 max-xl:mt-[60px] max-xl:ml-10 max-lg:mt-11 max-lg:ml-[-30px] max-md:w-[400px] max-md:ml-0">
           <h1>Join Our Newsletter</h1>
           <div className="flex gap-3">
             <input

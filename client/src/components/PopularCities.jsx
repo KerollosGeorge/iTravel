@@ -46,7 +46,7 @@ export const PopularCities = () => {
     }
   }, [start]);
   return (
-    <div className="w-[70%]">
+    <div className="w-[80%] max-sm:w-[90%]">
       {loading ? (
         <Loading />
       ) : (
@@ -62,7 +62,7 @@ export const PopularCities = () => {
                   crossorigin="anonymous"
                   src={getImageSource(item?.photos?.[0])}
                   alt={item?.city}
-                  className="w-[200px] h-full object-cover rounded-md  max-md:w-full max-md:h-full bg-red-300 brightness-[90%]"
+                  className="w-[300px] h-full object-cover rounded-md  max-md:w-full max-md:h-full bg-red-300 brightness-[90%]"
                 />
                 <div className="absolute bottom-1 flex flex-col w-full">
                   <p className="text-[13px] font-bold text-white bg-black/50 rounded py-1 px-2 text-center">

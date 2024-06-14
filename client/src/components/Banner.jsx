@@ -24,8 +24,8 @@ export const Banner = () => {
     <div
       className={
         darkMode
-          ? "w-[70%] h-[300px] bg-[rgb(32,32,32)] overflow-hidden shadow-lg flex items-center justify-around mt-6 max-md:flex max-md:flex-col max-md:h-[600px] max-md:justify-start max-md:gap-12"
-          : "w-[70%] h-[300px] overflow-hidden border-2 border-gray-400 shadow-lg flex items-center justify-around mt-6 max-md:flex max-md:flex-col max-md:h-[600px] max-md:justify-start max-md:gap-12"
+          ? "w-[80%] h-[300px] bg-[rgb(32,32,32)] overflow-hidden shadow-lg flex items-center justify-around mt-6 max-md:flex max-md:flex-col max-md:h-[600px] max-md:justify-start max-md:gap-12"
+          : "w-[80%] h-[300px] overflow-hidden border-2 border-gray-400 shadow-lg flex items-center justify-around mt-6 max-md:flex max-md:flex-col max-md:h-[600px] max-md:justify-start max-md:gap-12"
       }
     >
       <div className="relative">
