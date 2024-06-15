@@ -4,7 +4,7 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Footer = () => {
   const navigate = useNavigate();
@@ -45,18 +45,18 @@ export const Footer = () => {
         </div>
         <div className=" flex flex-col gap-3 h-[150px] w-[250px] max-md:w-[400px]">
           <h1 className=" font-semibold text-xl">Legal</h1>
-          <a className=" cursor-pointer " href="/privacy">
+          <Link to="/privacy" className=" cursor-pointer ">
             {" "}
             Privacy & Policy{" "}
-          </a>
-          <a href="/terms&services" className=" cursor-pointer ">
+          </Link>
+          <Link to="/terms&services" className=" cursor-pointer ">
             {" "}
             Terms & Services
-          </a>
-          <a href="/termsOfUse" className=" cursor-pointer ">
+          </Link>
+          <Link to="/termsOfUse" className=" cursor-pointer ">
             {" "}
             Terms of Use
-          </a>
+          </Link>
         </div>
         <div className=" flex flex-col gap-3 h-[200px] bg-[rgb(46,46,46)] p-2 max-xl:mt-[60px] max-xl:ml-10 max-lg:mt-11 max-lg:ml-[-30px] max-md:w-[400px] max-md:ml-0">
           <h1>Join Our Newsletter</h1>
