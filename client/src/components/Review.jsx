@@ -10,6 +10,7 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
+  const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
@@ -18,15 +19,15 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (review === "") {
-      setMsg("please write your reviwe first");
+      setErr("please write your reviwe first");
       const errorTime = setTimeout(() => {
-        setMsg("");
+        setErr("");
       }, 3000);
       return () => clearTimeout(errorTime);
     } else if (rating === 0) {
-      setMsg("Please Add Your Rating");
+      setErr("Please Add Your Rating");
       const errorTime = setTimeout(() => {
-        setMsg("");
+        setErr("");
       }, 2000);
       return () => clearTimeout(errorTime);
     } else {
@@ -38,7 +39,6 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
             rating,
           }
         );
-        console.log(res.data);
         if (res.data.msg === "Success") {
           setMsg("thanks for your Review");
           const errorTime = setTimeout(() => {
@@ -48,9 +48,9 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
           return () => clearTimeout(errorTime);
         }
       } catch (error) {
-        setMsg("something went wrong please try again later");
+        setErr("something went wrong please try again later");
         const errorTime = setTimeout(() => {
-          setMsg("");
+          setErr("");
         }, 3000);
         return () => clearTimeout(errorTime);
       }
@@ -67,6 +67,9 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
         }}
         icon={faXmark}
       />
+      {msg && (
+        <span className=" text-center text-green-600 text-lg">{msg}</span>
+      )}
       <h1 className="text-center text-3xl font-semibold text-white">
         Review For {name} {type}
       </h1>
@@ -86,7 +89,7 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
       >
         Submit
       </button>
-      {msg && <span className=" text-center text-red-500 text-lg">{msg}</span>}
+      {err && <span className=" text-center text-red-500 text-lg">{err}</span>}
     </div>
   );
 };

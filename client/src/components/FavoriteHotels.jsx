@@ -67,7 +67,6 @@ export const FavoriteHotels = ({ id }) => {
       console.log(error);
     }
   };
-  console.log(data);
 
   return (
     <div className="w-full flex items-center">
