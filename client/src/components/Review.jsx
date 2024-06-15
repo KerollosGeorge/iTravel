@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { StarRatingInput } from "./StarsToRating";
 
-export const Review = ({ hotelId, name, type }) => {
+export const Review = ({ setAddReview, hotelId, name, type }) => {
   const { user } = useContext(AuthContext);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
@@ -63,6 +63,7 @@ export const Review = ({ hotelId, name, type }) => {
         onClick={() => {
           setReview("");
           setRating(0);
+          setAddReview(false);
         }}
         icon={faXmark}
       />

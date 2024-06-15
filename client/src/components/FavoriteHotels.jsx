@@ -149,6 +149,7 @@ export const FavoriteHotels = ({ id }) => {
               </Link> */}
             </div>{" "}
             <p
+              className=" cursor-pointer hover:scale-[1.01] transition-all"
               onClick={() => {
                 setAddReview(!addReview);
               }}
@@ -157,6 +158,7 @@ export const FavoriteHotels = ({ id }) => {
             </p>
             {addReview && (
               <Review
+                setAddReview={setAddReview}
                 hotelId={data._id}
                 name={data.HotelName}
                 type={data.type}
