@@ -17,10 +17,10 @@ import {
 const router = express.Router();
 
 //Add hotel review
-router.post("/:userId/:hotelId", verifyUser, AddReview);
+router.post("/:userId/:hotelId", AddReview);
 
 //Add Site review
-router.post("/:userId" /* , verifyUser */, AddSiteReview);
+router.post("/:userId", AddSiteReview);
 
 //list
 router.get("/", GetAllReviews);

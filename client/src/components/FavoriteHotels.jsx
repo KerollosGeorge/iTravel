@@ -12,6 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { Loading } from "./Loading";
+import { Review } from "./Review";
 
 export const FavoriteHotels = ({ id }) => {
   const { user } = useContext(AuthContext);
@@ -21,7 +22,7 @@ export const FavoriteHotels = ({ id }) => {
   const [reviewData, setReviewData] = useState([]);
   const [openReview, setOpenReviews] = useState(false);
   const [favorite, setFavorite] = useState(false);
-
+  const [addReview, setAddReview] = useState(false);
   const getImageSource = (photo) => {
     if (!photo) return;
     return photo.startsWith("http")
@@ -66,6 +67,7 @@ export const FavoriteHotels = ({ id }) => {
       console.log(error);
     }
   };
+  console.log(data);
 
   return (
     <div className="w-full flex items-center">
@@ -146,7 +148,20 @@ export const FavoriteHotels = ({ id }) => {
                 <button>View Details</button>
               </Link> */}
             </div>{" "}
-            <p className=" cursor-pointer">Add Review</p>
+            <p
+              onClick={() => {
+                setAddReview(!addReview);
+              }}
+            >
+              Add Review
+            </p>
+            {addReview && (
+              <Review
+                hotelId={data._id}
+                name={data.HotelName}
+                type={data.type}
+              />
+            )}
           </div>
         </div>
       )}

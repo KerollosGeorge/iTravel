@@ -8,6 +8,7 @@ import { CreateError } from "../utils/customError.js";
 export const AddReview = async (req, res, next) => {
   const userId = req.params.userId;
   const hotelId = req.params.hotelId;
+  console.log(userId, hotelId);
   const newReview = new Review({ type: "hotel", ...req.body });
   try {
     const savedReview = await newReview.save();

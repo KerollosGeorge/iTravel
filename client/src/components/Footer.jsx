@@ -17,7 +17,7 @@ export const Footer = () => {
         onClick={() => navigate("/")}
       />
       <div className="h-[1px] w-[80%] self-center bg-gray-100 mb-5"></div>
-      <div className="w-full grid grid-cols-4 place-items-center max-xl:grid max-xl:grid-cols-3 max-xl:place-items-center max-lg:grid max-lg:grid-cols-2  max-md:flex max-md:flex-col max-md:justify-center max-md:items-center">
+      <div className="w-full grid grid-cols-4 place-items-center max-xl:grid max-xl:grid-cols-3 max-xl:place-items-center max-lg:grid max-lg:grid-cols-2  max-md:flex max-md:flex-col max-md:justify-center max-md:items-center max-sm:ml-5">
         <div className=" flex flex-col gap-3 h-[150px] w-[250px] max-md:w-[400px]">
           <h1 className=" font-semibold text-xl">Contact us</h1>
           <span className="flex gap-3 items-center">

@@ -34,6 +34,7 @@ export const Payment = () => {
     }
   }, [id]);
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false);
 
   const price =
     searchData?.item.type === "Hotel"
@@ -98,7 +99,6 @@ export const Payment = () => {
                       `https://itravel-apis.vercel.app/api/rooms/availability/${roomId}`,
                       { date }
                     );
-                    console.log(res.data);
                     return res.data;
                   })
                 );
@@ -107,11 +107,20 @@ export const Payment = () => {
                   `https://itravel-apis.vercel.app/api/hotels/availability/${id}`,
                   { date }
                 );
-                console.log(res.data);
                 return res.data;
               }
               const order = await actions.order.capture();
               console.log(order);
+
+              setNotHotel(false);
+              setRoomNumbers(false);
+              setMsg(false);
+              setSuccess(true);
+              const successMsg = setTimeout(() => {
+                setSuccess(false);
+                navigate("/");
+              }, 3000);
+              return () => clearTimeout(successMsg);
             } catch (error) {
               console.log(error);
             }
@@ -133,7 +142,7 @@ export const Payment = () => {
         : selectedRooms.filter((item) => item !== value)
     );
   };
-  console.log(searchData);
+
   return (
     <div className=" w-full ">
       <Navbar />
@@ -142,7 +151,7 @@ export const Payment = () => {
         {msg && notHotel === false && (
           <p className=" absolute top-5 left-[40%]">{msg}</p>
         )}
-        <div className="w-[40%] shadow-lg shadow-[gray] mt-[45px] ml-[50px] p-5 rounded-md  flex flex-col gap-5">
+        <div className="w-[40%] shadow-lg shadow-[gray] mt-[45px] ml-[50px] p-5 rounded-md  flex flex-col gap-5 min-w-max">
           <h1 className="font-bold text-[30px]">Details</h1>
           <p>
             Name:{" "}
@@ -214,6 +223,11 @@ export const Payment = () => {
           )}
           {(roomNumbers || notHotel === true) && <div ref={paypal}></div>}
         </div>
+        {success && (
+          <div className="absolute top-6 left-[40%] text-green-600 font-semibold">
+            <h2>Congratulations, Your Booking is Confirmed!</h2>
+          </div>
+        )}
       </div>
     </div>
   );
