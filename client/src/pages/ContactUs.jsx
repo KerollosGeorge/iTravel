@@ -11,7 +11,7 @@ export const ContactUs = () => {
           or concerns, please don't hesitate to get in touch with us. You can
           reach us by email, phone, or by filling out the contact form below.
         </p>
-        <div className="w-[50%] self-center ">
+        <div className="w-[50%] self-center max-sm:w-full min-w-[350px]">
           <h2 className="text-2xl font-bold mb-4 mt-8">Contact form</h2>
           <form className=" shadow-md shadow-[gray] p-4 rounded-md">
             <div className="mb-4">
