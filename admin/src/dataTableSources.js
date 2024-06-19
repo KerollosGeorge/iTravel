@@ -33,8 +33,9 @@ export const userColumns = [
     width: 80,
   },
   {
-    field: "isAdmin",
-    headerName: "is Admin?",
+    field: "role",
+    headerName: "Role",
+    valueGetter: (params) => `${params?.row?.role}`,
     width: 80,
   },
 ];

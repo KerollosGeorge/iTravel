@@ -24,6 +24,7 @@ export const NewUser = () => {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
+  console.log(role);
 
   const handleClick = async (e) => {
     e.preventDefault();
