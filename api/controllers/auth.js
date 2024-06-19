@@ -61,7 +61,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(StatusCodes.OK)
-      .json({ details: { ...otherDetails }, role, token: token });
+      .json({ details: { ...otherDetails }, token: token });
   } catch (error) {
     next(error);
   }
