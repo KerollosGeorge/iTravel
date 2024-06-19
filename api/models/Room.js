@@ -4,7 +4,7 @@ const roomSchema = new mongoose.Schema(
   {
     photos: {
       type: [String],
-      /* required: true, */
+      // required: true,
     },
     title: {
       type: String,

@@ -70,7 +70,7 @@ export const DeleteUser = async (req, res, next) => {
   const userId = req.params.id;
   try {
     const user = await User.findById(userId);
-    if (user.isAdmin) {
+    if (user.role === "admin") {
       return next(
         CreateError(StatusCodes.FORBIDDEN, "You can't delete admins")
       );

@@ -12,6 +12,7 @@ export const Register = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+  const [role, setRole] = useState("");
 
   const [seePassword, setSeePassword] = useState(false);
   const [err, setErr] = useState("");
@@ -47,6 +48,7 @@ export const Register = () => {
             phone,
             country,
             city,
+            role,
           }
         );
         if ((res.data.msg = "user has been created")) {
@@ -174,6 +176,17 @@ export const Register = () => {
                 }}
               ></input>
             </div>
+          </div>
+          <div>
+            <label htmlFor="role">You Are</label>
+            <select
+              id="role"
+              className=" h-8 rounded-sm outline-none indent-1 bg-transparent border-[2px] border-[gray]"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="user">User</option>
+              <option value="owner">Owner</option>
+            </select>
           </div>
         </div>
         <div className="flex flex-col gap-5">

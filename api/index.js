@@ -16,7 +16,9 @@ import reviewRoute from "./routes/review.js";
 import paymentRoute from "./routes/payment.js";
 
 import { hotelsData } from "./Hotels_data.js";
+import { roomsData } from "./Rooms_data.js";
 import Hotel from "./models/Hotel.js";
+import Room from "./models/Room.js";
 import bodyParser from "body-parser";
 import { upload } from "./utils/uploadImages.js";
 // import { dirname } from "path";

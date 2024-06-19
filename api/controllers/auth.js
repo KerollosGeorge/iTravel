@@ -51,17 +51,17 @@ export const login = async (req, res, next) => {
     }
     //generate token for user
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_LIFETIME }
     );
-    const { password, isAdmin, ...otherDetails } = user._doc;
+    const { password, role, ...otherDetails } = user._doc;
     res
       .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(StatusCodes.OK)
-      .json({ details: { ...otherDetails }, isAdmin, token: token });
+      .json({ details: { ...otherDetails }, role, token: token });
   } catch (error) {
     next(error);
   }
@@ -73,7 +73,7 @@ export const adminLogin = async (req, res, next) => {
       return next(CreateError(StatusCodes.NOT_FOUND, "User not Found"));
     }
     //compare passwords
-    if (!user.isAdmin) {
+    if (user.role !== "admin") {
       return next(CreateError(StatusCodes.NOT_FOUND, "You are not authorized"));
     }
     const isPasswordCorrect = await bcrypt.compare(
@@ -87,17 +87,17 @@ export const adminLogin = async (req, res, next) => {
     }
     //generate token for user
     const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
+      { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_LIFETIME }
     );
-    const { password, isAdmin, ...otherDetails } = user._doc;
+    const { password, role, ...otherDetails } = user._doc;
     res
       .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(StatusCodes.OK)
-      .json({ details: { ...otherDetails }, isAdmin, token: token });
+      .json({ details: { ...otherDetails }, role, token: token });
   } catch (error) {
     next(error);
   }

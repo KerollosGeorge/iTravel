@@ -62,7 +62,11 @@ export const Payment = () => {
         setRoomNumbers(true);
       } else {
         setRoomNumbers(false);
-        setMsg(`Please choose ${searchData.options.room} room(s)`);
+        setMsg(
+          `Please choose ${searchData.options.room} ${
+            searchData.options.room > 1 ? "rooms" : "room"
+          } `
+        );
         const errorTime = setTimeout(() => {
           setMsg("");
         }, 2000);
@@ -204,21 +208,25 @@ export const Payment = () => {
             </p>
           )}
           {searchData.item.type === "Hotel" && (
-            <div className="flex items-center gap-x-5">
-              Select your {searchData.options.room > 1 ? "Rooms" : "Room"}
-              {bookingData.roomNumbers?.map((roomNumber) => {
-                return (
-                  <div>
-                    <label>{roomNumber.number}</label>
-                    <input
-                      type="checkbox"
-                      value={roomNumber._id}
-                      onChange={handleSelect}
-                      disabled={roomNumber.unavailableDates?.length > 0}
-                    />
-                  </div>
-                );
-              })}
+            <div className="flex flex-col items-center gap-x-5">
+              <p className=" text-start self-start font-semibold text-lg">
+                Select your {searchData.options.room > 1 ? "Rooms" : "Room"} :
+              </p>
+              <ul className="w-[90%] grid grid-cols-4 max-md:grid-cols-2">
+                {bookingData.roomNumbers?.map((roomNumber) => {
+                  return (
+                    <li>
+                      <label>{roomNumber.number}</label>
+                      <input
+                        type="checkbox"
+                        value={roomNumber._id}
+                        onChange={handleSelect}
+                        disabled={roomNumber.unavailableDates?.length > 0}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           )}
           {(roomNumbers || notHotel === true) && <div ref={paypal}></div>}

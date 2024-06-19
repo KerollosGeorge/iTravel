@@ -13,10 +13,10 @@ export const User = () => {
         <div className=" w-full gap-2 min-w-[80vw] ">
           <Navbar />
           <UserInfo />
-          <div className=" w-full p-2 mt-4">
+          {/* <div className=" w-full p-2 mt-4">
             <h1 className=" text-2xl font-bold ml-4">Last Transictions</h1>
             <DataTable columns={reviewsColumns} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

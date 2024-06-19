@@ -15,8 +15,7 @@ export const NewUser = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
-  console.log(isAdmin);
+  const [role, setRole] = useState("");
 
   const { darkMode } = useContext(darkModeCotext);
   const [seePassword, setSeePassword] = useState(false);
@@ -36,7 +35,7 @@ export const NewUser = () => {
       phone === "" ||
       country === "" ||
       city === "" ||
-      isAdmin === ""
+      role === ""
     ) {
       setErr("Please Fill all Fields");
       const errorTime = setTimeout(() => {
@@ -55,7 +54,7 @@ export const NewUser = () => {
             phone,
             country,
             city,
-            isAdmin,
+            role,
           }
         );
         if ((res.data.msg = "user has been created")) {
@@ -213,14 +212,16 @@ export const NewUser = () => {
                 </div>
               </div>
               <div className="flex gap-5 items-center">
-                <label htmlFor="admin">Is Admin?</label>
-                <input
-                  type="checkbox"
-                  name="admin"
-                  id="admin"
-                  onClick={() => setIsAdmin(!isAdmin)}
-                  className=" scale-[1.5] focus:scale-[1.5] border-none "
-                />
+                <label htmlFor="role">Role</label>
+                <select
+                  id="role"
+                  className=" h-8 rounded-sm outline-none indent-1 bg-transparent border-[2px] border-[gray]"
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="user">User</option>
+                  <option value="owner">Owner</option>
+                  <option value="owner">Admin</option>
+                </select>
               </div>
             </div>
             <div className="flex flex-col gap-5">

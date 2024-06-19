@@ -34,9 +34,7 @@ export const UserInfo = () => {
                 Address : {data?.address} {data?.city}
               </p>
               <p className=" text-lg font-normal">Country : {data?.country}</p>
-              <p className=" text-lg font-normal">
-                Role : {data?.isAdmin ? "Admin" : "User"}
-              </p>
+              <p className=" text-lg font-normal">Role : {data?.role}</p>
               <p className=" text-lg font-normal">
                 Number of Reviews : {data?.reviews?.length}
               </p>

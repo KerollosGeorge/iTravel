@@ -308,7 +308,7 @@ export const NewHotel = () => {
                         Hotel
                       </option>
                       <option
-                        value="Appartment"
+                        value="Apartment"
                         className={darkMode && "bg-[#222]"}
                       >
                         Apartment

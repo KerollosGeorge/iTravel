@@ -101,7 +101,7 @@ export const AllHotels = () => {
               onChange={(e) => setType(e.target.value)}
             >
               <option value="Hotel">Hotel</option>
-              <option value="Appartment">Apartment</option>
+              <option value="Apartment">Apartment</option>
               <option value="Resort">Resort</option>
               <option value="Villa">Villa</option>
               <option value="Cabin">Cabin</option>

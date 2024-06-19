@@ -20,7 +20,8 @@ import { TermsOfUse } from "./pages/TermsOfUse";
 import { ContactUs } from "./pages/ContactUs";
 import { AboutUs } from "./pages/AboutUs";
 import { AllHotels } from "./pages/AllHotels";
-import { Success } from "./pages/Success";
+import { NewHotel } from "./pages/NewHotel";
+import { NewRoom } from "./pages/NewRoom";
 
 function App() {
   window.onbeforeunload = function () {
@@ -64,13 +65,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/hotel/new" element={<NewHotel />} />
+          <Route path="/room/new" element={<NewRoom />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms&services" element={<TermsServices />} />
           <Route path="/termsOfUse" element={<TermsOfUse />} />
-          <Route path="/success" element={<Success />} />
         </Routes>
       </div>
     </PayPalScriptProvider>
