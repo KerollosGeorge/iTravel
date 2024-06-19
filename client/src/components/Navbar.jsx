@@ -17,7 +17,6 @@ export const Navbar = () => {
     navigate("/");
   };
   const { darkMode, dispatchDarkMode } = useContext(darkModeContext);
-  console.log(user)
   return (
     <nav
       className={
@@ -42,9 +41,6 @@ export const Navbar = () => {
             onClick={() => setBars((prev) => !prev)}
           />
           <ul className="flex gap-10 max-lg:hidden text-lg ">
-            {/* <li className="cursor-pointer hover:scale-[1.05] transition-all">
-              Popular Cities
-            </li> */}
             <li
               className="cursor-pointer hover:scale-[1.05] transition-all"
               onClick={() => {
@@ -74,17 +70,17 @@ export const Navbar = () => {
             >
               Contact Us
             </li>
+            {(user?.role === "admin" || user?.role === "owner") && (
+              <li
+                className="cursor-pointer hover:scale-[1.05] transition-all"
+                onClick={() => {
+                  navigate("/hotel/new");
+                }}
+              >
+                Add Hotel
+              </li>
+            )}
           </ul>
-          {(user?.role === "admin" || user?.role === "owner") && (
-            <li
-              className="cursor-pointer hover:scale-[1.05] transition-all"
-              onClick={() => {
-                navigate("/hotel/new");
-              }}
-            >
-              Add Hotel
-            </li>
-          )}
           {user ? (
             <div className=" relative">
               <button
@@ -144,9 +140,6 @@ export const Navbar = () => {
               : "w-full flex flex-col pl-[10%] gap-9 lg:hidden transition-all p-2 bg-white opacity-[80%] font-semibold"
           }
         >
-          {/* <li className="cursor-pointer hover:scale-[1.05] w-[60%] transition-all">
-            Popular Cities
-          </li> */}
           <li
             className="cursor-pointer hover:scale-[1.05] w-[60%] transition-all"
             onClick={() => {
@@ -176,6 +169,16 @@ export const Navbar = () => {
           >
             Contact Us
           </li>
+          {(user?.role === "admin" || user?.role === "owner") && (
+            <li
+              className="cursor-pointer hover:scale-[1.05] transition-all"
+              onClick={() => {
+                navigate("/hotel/new");
+              }}
+            >
+              Add Hotel
+            </li>
+          )}
         </ul>
       )}
     </nav>

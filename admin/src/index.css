@@ -2,19 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  margin: 0;
-  font-family: "Nunito", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 5000s;
+  /* min-width: fit-content; */
+  width: 100%;
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 98%);
 }

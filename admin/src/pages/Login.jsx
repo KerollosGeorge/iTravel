@@ -10,6 +10,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
+  console.log(cred);
   const { loading, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const [err, setErr] = useState("");

@@ -2,8 +2,6 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { Loading } from "./Loading";
 import { Chart } from "./Chart";
-import { DataTable } from "./DataTable";
-import { hotelColumns, roomsColumns, userColumns } from "../dataTableSources";
 
 export const UserInfo = () => {
   const location = useLocation();
@@ -11,7 +9,6 @@ export const UserInfo = () => {
   const { data, loading, error } = useFetch(
     `https://itravel-apis.vercel.app/api/user/${userId}`
   );
-  console.log(data.isAdmin);
   if (loading) {
     return <Loading />;
   } else if (!data) {

@@ -15,7 +15,7 @@ export const NewUser = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("user");
 
   const { darkMode } = useContext(darkModeCotext);
   const [seePassword, setSeePassword] = useState(false);
@@ -220,7 +220,7 @@ export const NewUser = () => {
                 >
                   <option value="user">User</option>
                   <option value="owner">Owner</option>
-                  <option value="owner">Admin</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
             </div>
