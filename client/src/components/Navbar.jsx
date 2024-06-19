@@ -17,7 +17,7 @@ export const Navbar = () => {
     navigate("/");
   };
   const { darkMode, dispatchDarkMode } = useContext(darkModeContext);
-  // console.log(user)
+  console.log(user)
   return (
     <nav
       className={
