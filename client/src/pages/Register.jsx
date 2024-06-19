@@ -12,7 +12,7 @@ export const Register = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("user");
 
   const [seePassword, setSeePassword] = useState(false);
   const [err, setErr] = useState("");
@@ -100,7 +100,7 @@ export const Register = () => {
               Email
             </label>
             <input
-              type="text"
+              type="email"
               name="email"
               id="email"
               placeholder="Enter Your Email"
@@ -177,7 +177,7 @@ export const Register = () => {
               ></input>
             </div>
           </div>
-          <div>
+          <div className="flex gap-2">
             <label htmlFor="role">You Are</label>
             <select
               id="role"
