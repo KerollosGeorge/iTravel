@@ -333,11 +333,11 @@ export const DeleteAddedHotel = async (req, res, next) => {
   const userId = req.params.userId;
   const hotelId = req.params.id;
   try {
-    //find the hotel first to define and delete its rooms first
+    // Find the hotel and user
     const hotel = await Hotel.findById(hotelId);
-    //find user
     const user = await User.findById(userId);
-    //delete the hotel images from disk storage
+
+    // Delete hotel images from disk storage
     if (hotel.photos && hotel.photos.length > 0) {
       hotel.photos.forEach((image) => {
         if (image.startsWith("http")) {
@@ -354,26 +354,20 @@ export const DeleteAddedHotel = async (req, res, next) => {
       });
     }
 
-    // Remove hotel ID from user.hotels array
-    await User.findByIdAndUpdate(userId, { $pull: { hotels: hotelId } }); // wait for this to resolve
-    await user.save(); // save the updated user document
+    // Remove hotel ID from user.hotels array and update user
+    user.hotels.pull(hotelId);
+    await user.save();
 
+    // Delete hotel rooms and reviews
     await Promise.all(
-      hotel?.rooms?.map((room) => {
-        return Room.findByIdAndDelete(room);
-      }),
-      hotel?.reviews?.map((reviewId) => {
-        return Review.findByIdAndDelete(reviewId);
-      })
+      hotel?.rooms?.map((room) => Room.findByIdAndDelete(room)),
+      hotel?.reviews?.map((reviewId) => Review.findByIdAndDelete(reviewId))
     );
 
-    try {
-      //delete the hotel
-      await Hotel.findByIdAndDelete(hotelId);
-    } catch (error) {
-      next(error);
-    }
-    res.status(StatusCodes.OK).json("the Hotel has been Deleted Successfully");
+    // Delete the hotel
+    await Hotel.findByIdAndDelete(hotelId);
+
+    res.status(StatusCodes.OK).json("The Hotel has been Deleted Successfully");
   } catch (error) {
     next(error);
   }

@@ -90,8 +90,6 @@ export const Profile = () => {
       return () => clearTimeout(errorTime);
     }
   };
-  console.log(data);
-  console.log(user.hotels);
   return (
     <div className=" w-ful flex flex-col">
       {loading ? (
@@ -241,13 +239,17 @@ export const Profile = () => {
                   </button>
                 )}
               </h1>
-              <div className="w-full min-w-max grid grid-cols-2 gap-4 place-items-center p-4 max-xl:grid-cols-1 max-md:w-full max-md:ml-2 max-md:p-0">
-                {!showMorehotels
-                  ? user?.hotels
-                      ?.slice(0, 2)
-                      ?.map((id) => <AddedHotels id={id} key={id} />)
-                  : user?.hotels?.map((id) => <AddedHotels id={id} key={id} />)}
-              </div>
+              {user?.hotels.length > 0 && (
+                <div className="w-full min-w-max grid grid-cols-2 gap-4 place-items-center p-4 max-xl:grid-cols-1 max-md:w-full max-md:ml-2 max-md:p-0">
+                  {!showMorehotels
+                    ? user?.hotels
+                        ?.slice(0, 2)
+                        ?.map((id) => <AddedHotels id={id} key={id} />)
+                    : user?.hotels?.map((id) => (
+                        <AddedHotels id={id} key={id} />
+                      ))}
+                </div>
+              )}
             </div>
           </div>
         </>
