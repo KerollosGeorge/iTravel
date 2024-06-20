@@ -1,5 +1,6 @@
 import Hotel from "../models/Hotel.js";
 import Room from "../models/Room.js";
+import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
 import Review from "../models/Review.js";
 import path from "path";
