@@ -47,6 +47,7 @@ const userSchema = new mongoose.Schema(
     favorates: {
       type: [String],
     },
+    hotels: [String],
   },
   { timestamps: true }
 );

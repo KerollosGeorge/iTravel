@@ -194,6 +194,11 @@ export const CreateHotel = async (req, res, next) => {
 
   try {
     const savedHotel = await newHotel.save();
+    if (body.userId) {
+      await User.findByIdAndUpdate(body.userId, {
+        $push: { hotels: savedHotel._id },
+      });
+    }
     res
       .status(StatusCodes.CREATED)
       .json({ savedHotel, msg: "Hotel has been Created successfully" });

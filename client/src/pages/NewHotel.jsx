@@ -4,6 +4,8 @@ import axios from "axios";
 import { Navbar } from "../components/Navbar";
 import { darkModeContext } from "../context/DarkMoodContext";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import { NewRoom } from "./NewRoom";
+import { AuthContext } from "../context/AuthContext";
 
 export const NewHotel = () => {
   const [HotelName, setHotelName] = useState("");
@@ -21,6 +23,7 @@ export const NewHotel = () => {
   const [featured, setFeatured] = useState(false);
 
   const { darkMode } = useContext(darkModeContext);
+  const { user } = useContext(AuthContext);
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
@@ -65,6 +68,7 @@ export const NewHotel = () => {
         formData.append("cheapestPrice", cheapestPrice);
         formData.append("type", type);
         formData.append("featured", featured);
+        formData.append("userId", user._id);
 
         const res = await axios.post(
           "https://itravel-apis.vercel.app/api/hotels",
@@ -76,7 +80,11 @@ export const NewHotel = () => {
         setMsg(res.data.msg);
         const timeout = setTimeout(() => {
           setMsg("");
-          navigate("/hotels");
+          if (type === "Hotel") {
+            <NewRoom HotelName={HotelName} />;
+          } else {
+            navigate("/");
+          }
         }, 2000);
         return () => clearTimeout(timeout);
       } catch (err) {
@@ -328,7 +336,7 @@ export const NewHotel = () => {
             onClick={handleClick}
             className="w-50 bg-blue-600 text-lg px-3 py-1 rounded-md text-white cursor-pointer self-center hover:bg-blue-700 hover:scale-105"
           >
-            Send
+            {type === "Hotel" ? "Add Rooms" : "Send"}
           </button>
           {err && (
             <span className=" absolute text-center text-red-600 text-sm top-0 self-center bg-[#e1e1e1] p-2 rounded-md">

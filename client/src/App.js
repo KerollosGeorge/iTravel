@@ -21,7 +21,6 @@ import { ContactUs } from "./pages/ContactUs";
 import { AboutUs } from "./pages/AboutUs";
 import { AllHotels } from "./pages/AllHotels";
 import { NewHotel } from "./pages/NewHotel";
-import { NewRoom } from "./pages/NewRoom";
 
 function App() {
   window.onbeforeunload = function () {
@@ -66,7 +65,6 @@ function App() {
             }
           />
           <Route path="/hotel/new" element={<NewHotel />} />
-          <Route path="/room/new" element={<NewRoom />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/aboutUs" element={<AboutUs />} />

@@ -7,7 +7,7 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import useFetch from "../hooks/useFetch";
 import { Loading } from "../components/Loading";
 
-export const NewRoom = () => {
+export const NewRoom = ({ HotelName }) => {
   const [images, setImages] = useState("");
   const [urlImages, setUrlImages] = useState("");
   const [title, setTitle] = useState("");
@@ -15,7 +15,6 @@ export const NewRoom = () => {
   const [maxpeople, setMaxPeople] = useState(undefined);
   const [desc, setDesc] = useState("");
   const [rooms, setRooms] = useState([]);
-  const [HotelName, setHotelName] = useState("");
 
   const { darkMode } = useContext(darkModeContext);
   const [err, setErr] = useState("");
@@ -34,8 +33,7 @@ export const NewRoom = () => {
       title === "" ||
       desc === "" ||
       maxpeople === "" ||
-      price === "" ||
-      HotelName === ""
+      price === ""
     ) {
       setErr("Please Fill all Fields");
       const errorTime = setTimeout(() => {
@@ -77,7 +75,68 @@ export const NewRoom = () => {
         setMsg(res.data.msg);
         const timeout = setTimeout(() => {
           setMsg("");
-          navigate("/rooms");
+          navigate("/");
+        }, 2000);
+        return () => clearTimeout(timeout);
+      } catch (err) {
+        setErr(err.message);
+        const errorTime = setTimeout(() => {
+          setErr("");
+        }, 3000);
+        return () => clearTimeout(errorTime);
+      }
+    }
+  };
+  const handleAddNew = async (e) => {
+    e.preventDefault();
+    if (
+      rooms === "" ||
+      title === "" ||
+      desc === "" ||
+      maxpeople === "" ||
+      price === ""
+    ) {
+      setErr("Please Fill all Fields");
+      const errorTime = setTimeout(() => {
+        setErr("");
+      }, 2000);
+      return () => clearTimeout(errorTime);
+    } else {
+      try {
+        const roomNumbersArray = Array.isArray(rooms)
+          ? rooms
+          : rooms?.length > 0
+          ? rooms
+              .split(",")
+              .map((room) => ({ number: room, unavailableDates: [] }))
+          : [];
+
+        const formData = new FormData();
+        if (images) {
+          await Promise.all(
+            Object.values(images).map((image) => {
+              formData.append("image", image);
+            })
+          );
+        }
+        formData.append("urlImages", urlImages);
+        formData.append("title", title);
+        formData.append("price", price);
+        formData.append("maxPeople", maxpeople);
+        formData.append("desc", desc);
+        formData.append("HotelName", HotelName);
+        formData.append("roomNumbers", JSON.stringify(roomNumbersArray));
+        const res = await axios.post(
+          `https://itravel-apis.vercel.app/api/rooms`,
+          formData,
+          {
+            headers: { "content-type": "multipart/form-data" },
+          }
+        );
+        setMsg(res.data.msg);
+        const timeout = setTimeout(() => {
+          setMsg("");
+          <NewRoom HotelName={HotelName} />;
         }, 2000);
         return () => clearTimeout(timeout);
       } catch (err) {
@@ -221,48 +280,23 @@ export const NewRoom = () => {
                 }}
               ></textarea>
             </div>
-
-            <div className="flex flex-col gap-1">
-              <label htmlFor="HotelName" className="text-sm">
-                Hotel Name
-              </label>
-              <select
-                id="HotelName"
-                name="HotelName"
-                className=" h-8 rounded-sm outline-none indent-1 bg-transparent border-[2px] border-[gray]"
-                onChange={(e) => setHotelName(e.target.value)}
-              >
-                {loading ? (
-                  <Loading />
-                ) : error ? (
-                  setErr(error)
-                ) : (
-                  <>
-                    <option value="default" className={darkMode && "bg-[#222]"}>
-                      Select a hotel...
-                    </option>
-                    {data.map((hotel, i) => (
-                      <option
-                        value={hotel.HotelName}
-                        key={data._id}
-                        className={darkMode && "bg-[#222]"}
-                      >
-                        {hotel.HotelName}
-                      </option>
-                    ))}
-                  </>
-                )}
-              </select>
-            </div>
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <button
-            onClick={handleClick}
-            className="w-50 bg-blue-600 text-lg px-3 py-1 rounded-md text-white cursor-pointer self-center hover:bg-blue-700 hover:scale-105"
-          >
-            Send
-          </button>
+          <div className=" flex items-center justify-around">
+            <button
+              onClick={handleAddNew}
+              className="w-50 bg-green-600 text-lg px-3 py-1 rounded-md text-white cursor-pointer self-center hover:bg-blue-700 hover:scale-105"
+            >
+              Add New Room
+            </button>
+            <button
+              onClick={handleClick}
+              className="w-50 bg-blue-600 text-lg px-3 py-1 rounded-md text-white cursor-pointer self-center hover:bg-blue-700 hover:scale-105"
+            >
+              Send
+            </button>
+          </div>
           {err && (
             <span className=" absolute text-center text-red-600 text-sm top-0 self-center bg-[#e1e1e1] p-2 rounded-md">
               {err}
