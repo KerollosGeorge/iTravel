@@ -323,3 +323,53 @@ export const DeleteHotel = async (req, res, next) => {
     next(error);
   }
 };
+
+export const DeleteAddedHotel = async (req, res, next) => {
+  const userId = req.params.userId;
+  const hotelId = req.params.id;
+  try {
+    //find the hotel first to define and delete its rooms first
+    const hotel = await Hotel.findById(hotelId);
+    //find user
+    const user = await User.findById(userId);
+    //delete the hotel images from disk storage
+    if (hotel.photos && hotel.photos.length > 0) {
+      hotel.photos.forEach((image) => {
+        if (image.startsWith("http")) {
+          return hotel.photos.filter((photo) => photo !== image);
+        } else {
+          const imagePath = path.join("./public/Images", image);
+          fs.unlink(imagePath, (err) => {
+            if (err) {
+              console.error(err);
+              next(err);
+            }
+          });
+        }
+      });
+    }
+
+    await Promise.all(
+      user.hotels.filter((hotel) => {
+        return hotel !== hotelId;
+      })
+    );
+    await Promise.all(
+      hotel?.rooms?.map((room) => {
+        return Room.findByIdAndDelete(room);
+      }),
+      hotel?.reviews?.map((reviewId) => {
+        return Review.findByIdAndDelete(reviewId);
+      })
+    );
+    try {
+      //delete the hotel
+      await Hotel.findByIdAndDelete(hotelId);
+    } catch (error) {
+      next(error);
+    }
+    res.status(StatusCodes.OK).json("the Hotel has been Deleted Successfully");
+  } catch (error) {
+    next(error);
+  }
+};

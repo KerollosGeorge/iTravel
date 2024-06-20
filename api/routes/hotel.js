@@ -10,6 +10,7 @@ import {
   DeleteHotel,
   UpdateHotelAvailability,
   AdminGetAllHotels,
+  DeleteAddedHotel,
 } from "../controllers/hotel.js";
 import { verifyAdmin } from "../utils/verify_token.js";
 import { GetHotelReviews } from "../controllers/review.js";
@@ -30,5 +31,6 @@ router.post("/" /*, verifyAdmin, */, upload, CreateHotel);
 router.put("/:id" /* , verifyAdmin */, upload, UpdateHotel);
 router.put("/availability/:id", UpdateHotelAvailability);
 router.delete("/:id", DeleteHotel);
+router.delete("/:userId/:id", DeleteAddedHotel);
 
 export default router;
