@@ -176,7 +176,6 @@ export const CreateHotel = async (req, res, next) => {
   const { files, body } = req;
   const { urlImages } = body;
   let photos = [];
-  console.log(body.userId);
 
   // handle files
   if (files && files.length > 0) {
