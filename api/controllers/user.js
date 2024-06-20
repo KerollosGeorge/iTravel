@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import { StatusCodes } from "http-status-codes";
 import Review from "../models/Review.js";
 import { CreateError } from "../utils/customError.js";
+import Hotel from "../models/Hotel.js";
 
 //search for all users in the system
 export const GetAllUsers = async (req, res, next) => {
@@ -78,6 +79,11 @@ export const DeleteUser = async (req, res, next) => {
     await Promise.all(
       user.reviews.map((reviewId) => {
         return Review.findByIdAndDelete(reviewId);
+      })
+    );
+    await Promise.all(
+      user.hotels.map((hotel) => {
+        return Hotel.findByIdAndDelete(hotel);
       })
     );
     try {

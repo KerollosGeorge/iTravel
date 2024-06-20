@@ -14,7 +14,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Loading } from "./Loading";
 import { Review } from "./Review";
 
-export const FavoriteHotels = ({ id }) => {
+export const AddedHotels = ({ id }) => {
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(
     `https://itravel-apis.vercel.app/api/hotels/find/${id}`
@@ -33,6 +33,7 @@ export const FavoriteHotels = ({ id }) => {
     const Favorite = async () => {
       setFavorite(id);
     };
+    console.log(data);
     Favorite();
     if (data) {
       const fetchData = async () => {
@@ -170,4 +171,4 @@ export const FavoriteHotels = ({ id }) => {
   );
 };
 
-export default FavoriteHotels;
+export default AddedHotels;

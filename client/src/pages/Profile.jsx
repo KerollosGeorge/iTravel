@@ -10,6 +10,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { darkModeContext } from "../context/DarkMoodContext";
 import { Loading } from "../components/Loading";
+import AddedHotels from "../components/AddedHotels";
 
 export const Profile = () => {
   let { user, updateUser } = useContext(AuthContext);
@@ -25,6 +26,7 @@ export const Profile = () => {
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
   const [showMore, setshowMore] = useState(false);
+  const [showMorehotels, setshowMoreHotels] = useState(false);
   const { darkMode } = useContext(darkModeContext);
   useEffect(() => {
     if (user) {
@@ -88,6 +90,8 @@ export const Profile = () => {
       return () => clearTimeout(errorTime);
     }
   };
+  console.log(data);
+  console.log(user.hotels);
   return (
     <div className=" w-ful flex flex-col">
       {loading ? (
@@ -215,6 +219,34 @@ export const Profile = () => {
                       ?.slice(0, 2)
                       .map((id) => <FavoriteHotels id={id} key={id} />)
                   : data?.map((id) => <FavoriteHotels id={id} key={id} />)}
+              </div>
+            </div>
+            <div className="w-[70%] flex flex-col gap-5 p-4 max-md:w-full ml-8 max-md:ml-0 max-md:p-1">
+              <h1 className="text-3xl font-bold text-red-400">
+                Hotel Added{" "}
+                {user?.hotels.length <= 2 ? (
+                  ""
+                ) : (
+                  <button
+                    onClick={() => {
+                      setshowMoreHotels(!showMorehotels);
+                      /* showMore && window.scrollTo(0, 0); */
+                    }}
+                  >
+                    {!showMorehotels ? (
+                      <FontAwesomeIcon icon={faChevronUp} />
+                    ) : (
+                      <FontAwesomeIcon icon={faChevronDown} />
+                    )}
+                  </button>
+                )}
+              </h1>
+              <div className="w-full min-w-max grid grid-cols-2 gap-4 place-items-center p-4 max-xl:grid-cols-1 max-md:w-full max-md:ml-2 max-md:p-0">
+                {!showMorehotels
+                  ? user?.hotels
+                      ?.slice(0, 2)
+                      ?.map((id) => <AddedHotels id={id} key={id} />)
+                  : user?.hotels?.map((id) => <AddedHotels id={id} key={id} />)}
               </div>
             </div>
           </div>
