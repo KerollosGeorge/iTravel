@@ -49,9 +49,9 @@ export const AdminGetAllHotels = async (req, res, next) => {
 
 //get a specific hotel
 export const GetHotel = async (req, res, next) => {
-  const date = new Date();
-  const formattedDate =
-    date.toISOString().split("T")[0] + "T22:00:00.000+00:00";
+  // const date = new Date();
+  // const formattedDate =
+  //   date.toISOString().split("T")[0] + "T22:00:00.000+00:00";
 
   try {
     const hotel = await Hotel.findById(req.params.id);
