@@ -55,16 +55,21 @@ export const GetHotel = async (req, res, next) => {
 
   try {
     const hotel = await Hotel.findById(req.params.id);
-    if (hotel.unavailableDates?.length > 0) {
-      const endDate = new Date(hotel.unavailableDates[1]);
-      endDate.setDate(endDate.getDate() + 1); // add one day to endDate
+    if (hotel) {
+      // Add this null check
+      if (hotel.unavailableDates?.length > 0) {
+        const endDate = new Date(hotel.unavailableDates[1]);
+        endDate.setDate(endDate.getDate() + 1); // add one day to endDate
 
-      if (endDate.getTime() <= new Date(formattedDate).getTime()) {
-        hotel.unavailableDates = [];
-        await hotel.save();
+        if (endDate.getTime() <= new Date(formattedDate).getTime()) {
+          hotel.unavailableDates = [];
+          await hotel.save();
+        }
       }
+      res.status(StatusCodes.OK).json(hotel);
+    } else {
+      res.status(StatusCodes.NOT_FOUND).json({ message: "Hotel not found" });
     }
-    res.status(StatusCodes.OK).json(hotel);
   } catch (error) {
     next(error);
   }

@@ -6,7 +6,6 @@ import {
   faArrowDown,
   faArrowUp,
   faLocationDot,
-  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -18,13 +17,15 @@ import { darkModeContext } from "../context/DarkMoodContext";
 export const AddedHotels = ({ id }) => {
   const { user } = useContext(AuthContext);
   const { darkMode } = useContext(darkModeContext);
-  const [data, setData] = useState();
-  useEffect(() => {
-    axios
-      .get(`https://itravel-apis.vercel.app/api/hotels/find/${id}`)
-      .then((response) => setData(response.data));
-    console.log(data);
-  }, [id, user]);
+  const { data, loading, error } = useFetch(
+    `https://itravel-apis.vercel.app/api/hotels/find/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const [reviewData, setReviewData] = useState([]);
   const [openReview, setOpenReviews] = useState(false);
   const [addReview, setAddReview] = useState(false);
@@ -79,6 +80,17 @@ export const AddedHotels = ({ id }) => {
       return () => clearTimeout(errTime);
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!data) {
+    return <div>Data not found</div>;
+  }
   return (
     <>
       {data && (
