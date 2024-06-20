@@ -349,11 +349,9 @@ export const DeleteAddedHotel = async (req, res, next) => {
       });
     }
 
-    await Promise.all(
-      user.hotels.filter((hotel) => {
-        return hotel !== hotelId;
-      })
-    );
+    // Remove hotel ID from user.hotels array
+    await User.findByIdAndUpdate(userId, { $pull: { hotels: hotelId } });
+
     await Promise.all(
       hotel?.rooms?.map((room) => {
         return Room.findByIdAndDelete(room);
