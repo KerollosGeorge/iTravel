@@ -29,16 +29,29 @@ export const Profile = () => {
   const [showMorehotels, setshowMoreHotels] = useState(false);
   const [hotelsAdded, setHotelsAdded] = useState(user.hotels);
   const { darkMode } = useContext(darkModeContext);
+  const [userInfo, setUserInfo] = useState(user);
 
-  useEffect(async () => {
-    if (hotelsAdded) {
-      const res = await axios.put(
-        `https://itravel-apis.vercel.app/api/user/${user._id}`,
-        { hotelsAdded }
-      );
-      updateUser(res.data.updateUser);
-    }
+  useEffect(() => {
+    const updateHotelsAdded = async () => {
+      if (hotelsAdded && hotelsAdded.length > 0) {
+        const res = await axios.put(
+          `https://itravel-apis.vercel.app/api/user/${user._id}`,
+          { hotelsAdded }
+        );
+        updateUser(res.data.updateUser);
+      }
+    };
+    updateHotelsAdded();
   }, [hotelsAdded]);
+  useEffect(() => {
+    const getUpdatedUser = async () => {
+      const res = await axios.get(
+        `https://itravel-apis.vercel.app/api/user/${user._id}`
+      );
+      setUserInfo(res.data);
+    };
+    getUpdatedUser();
+  }, []);
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName);
@@ -95,10 +108,6 @@ export const Profile = () => {
         ? error.response.data.message
         : error.message;
       setErr(errorMessage);
-      const errorTime = setTimeout(() => {
-        setErr("");
-      }, 2000);
-      return () => clearTimeout(errorTime);
     }
   };
   return (
@@ -232,28 +241,24 @@ export const Profile = () => {
             </div>
             <div className="w-[70%] flex flex-col gap-5 p-4 max-md:w-full ml-8 max-md:ml-0 max-md:p-1">
               <h1 className="text-3xl font-bold text-red-400">
-                Hotel Added{" "}
-                {user?.hotels.length <= 2 ? (
-                  ""
-                ) : (
-                  <button
-                    onClick={() => {
-                      setshowMoreHotels(!showMorehotels);
-                      /* showMore && window.scrollTo(0, 0); */
-                    }}
-                  >
-                    {!showMorehotels ? (
-                      <FontAwesomeIcon icon={faChevronUp} />
-                    ) : (
-                      <FontAwesomeIcon icon={faChevronDown} />
-                    )}
-                  </button>
-                )}
+                Hotels Added{" "}
+                <button
+                  onClick={() => {
+                    setshowMoreHotels(!showMorehotels);
+                    /* showMore && window.scrollTo(0, 0); */
+                  }}
+                >
+                  {!showMorehotels ? (
+                    <FontAwesomeIcon icon={faChevronUp} />
+                  ) : (
+                    <FontAwesomeIcon icon={faChevronDown} />
+                  )}
+                </button>
               </h1>
-              {user?.hotels.length > 0 && (
+              {userInfo?.hotels.length > 0 && (
                 <div className="w-full min-w-max grid grid-cols-2 gap-4 place-items-center p-4 max-xl:grid-cols-1 max-md:w-full max-md:ml-2 max-md:p-0">
                   {!showMorehotels
-                    ? user?.hotels
+                    ? userInfo?.hotels
                         ?.slice(0, 2)
                         ?.map((id) => (
                           <AddedHotels
@@ -262,7 +267,7 @@ export const Profile = () => {
                             setHotelsAdded={setHotelsAdded}
                           />
                         ))
-                    : user?.hotels?.map((id) => (
+                    : userInfo?.hotels?.map((id) => (
                         <AddedHotels
                           id={id}
                           key={id}

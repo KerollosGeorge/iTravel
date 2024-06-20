@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Loading } from "./Loading";
 import { Review } from "./Review";
 import { darkModeContext } from "../context/DarkMoodContext";
@@ -27,6 +27,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [err, setErr] = useState();
   const [msg, setMsg] = useState();
+  const navigate = useNavigate();
   const getImageSource = (photo) => {
     if (!photo) return;
     return photo.startsWith("http")
@@ -64,6 +65,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
       const msgTime = setTimeout(() => {
         setMsg("");
         setIsOpen(false);
+        window.location.reload();
       }, 2000);
       return () => clearTimeout(msgTime);
     } catch (err) {
@@ -89,7 +91,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                 alt={data?.HotelName}
                 className="w-[300px] h-[220px] object-cover p-2 max-md:w-full"
               />
-              <div className="flex flex-col gap-2 p-1 w-[330px] max-md:p-2">
+              <div className=" relative flex flex-col gap-2 p-1 w-[330px] max-md:p-2">
                 <h3 className=" font-semibold text-xl">{data?.HotelName}</h3>
                 <span className="flex gap-1 text-sm">
                   {<StarRating rating={data?.rating} />} {data?.rating} Stars{" "}
@@ -113,9 +115,6 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                         <p className="text-sm">
                           {reviewData.review?.review?.rating}
                         </p>
-                        {/*                 <div className="flex gap-1 items-center">
-                <StarRating rating={reviewData.review?.rating} />
-              </div> */}
                       </div>
                     ))}
                   </span>
@@ -155,9 +154,13 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                   />
                 )}
                 <div className="flex items-center justify-around">
-                  <Link className=" border-dashed border-[1px] border-[#4040ff] rounded-md py-1 px-2 text-blue-700 text-center hover:bg-blue-700  hover:text-white hover:transition-all transition-all">
-                    <button>View</button>
-                  </Link>
+                  <button
+                    onClick={() => navigate(`/hotels/${id}`)}
+                    className=" border-dashed border-[1px] border-[#4040ff] rounded-md py-1 px-2 text-blue-700 text-center hover:bg-blue-700  hover:text-white hover:transition-all transition-all"
+                  >
+                    View
+                  </button>
+
                   <Link className=" border-dashed border-[1px] border-[#59ff40] rounded-md py-1 px-2 text-green-700 text-center hover:bg-green-700  hover:text-white hover:transition-all transition-all">
                     <button>Edit</button>
                   </Link>
@@ -169,7 +172,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                   </button>
                 </div>
                 {isOpen && (
-                  <div className="fixed top-[43%] left-[11%] z-10 w-[500px] opacity-100 bg-[#cdcdcd] p-2 rounded-lg flex flex-col ">
+                  <div className=" absolute top-[20%] left-[-70%] z-10 w-[500px] opacity-100 bg-[#cdcdcd] p-2 rounded-lg flex flex-col ">
                     <p
                       className={
                         darkMode

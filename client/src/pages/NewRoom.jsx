@@ -95,14 +95,14 @@ export const NewRoom = ({ HotelName }) => {
       ) : (
         <div className=" w-full flex flex-col min-w-max">
           <Navbar />
-          <h2 className="text-3xl w-full flex text-start p-2 pl-5 shadow-md shadow-[gray]">
+          <h2 className="text-3xl  w-[1200px] flex flex-col min-w-[400px] self-center ml-6 mb-[2px] text-start p-2 pl-5 shadow-md shadow-[gray]">
             Add New Room
           </h2>
           <form
             className={
               darkMode
-                ? "relative w-[1200px] flex flex-col min-w-[400px]  ml-6 mb-4 max-sm:h-[600px] bg-[#111] shadow-xl shadow-[gray] space-y-[30px] max-sm:space-y-[25px] p-5 rounded-md"
-                : "relative w-[1200px] flex flex-col min-w-[400px]  ml-6 mb-4 max-sm:h-[600px] bg-white shadow-lg shadow-[gray] space-y-[30px] max-sm:space-y-[25px] p-5 rounded-md"
+                ? "relative w-[1200px] flex flex-col min-w-[400px] self-center  ml-6 mb-4 max-sm:h-[600px] bg-[#111] shadow-xl shadow-[gray] space-y-[30px] max-sm:space-y-[25px] p-5 rounded-md"
+                : "relative w-[1200px] flex flex-col min-w-[400px] self-center  ml-6 mb-4 max-sm:h-[600px] bg-white shadow-lg shadow-[gray] space-y-[30px] max-sm:space-y-[25px] p-5 rounded-md"
             }
           >
             <div className="w-full flex justify-around">
@@ -116,7 +116,7 @@ export const NewRoom = ({ HotelName }) => {
                       ? urlImages?.split(",")?.[0]
                       : "../images/no_image.jpg"
                   }
-                  alt="hotel images"
+                  alt="room images"
                   crossorigin="anonymous"
                 />
                 <label htmlFor="file" className=" ml-1 mb-1">
