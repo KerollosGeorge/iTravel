@@ -27,7 +27,18 @@ export const Profile = () => {
   const [msg, setMsg] = useState("");
   const [showMore, setshowMore] = useState(false);
   const [showMorehotels, setshowMoreHotels] = useState(false);
+  const [hotelsAdded, setHotelsAdded] = useState(user.hotels);
   const { darkMode } = useContext(darkModeContext);
+
+  useEffect(async () => {
+    if (hotelsAdded) {
+      const res = await axios.put(
+        `https://itravel-apis.vercel.app/api/user/${user._id}`,
+        { hotelsAdded }
+      );
+      updateUser(res.data.updateUser);
+    }
+  }, [hotelsAdded]);
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName);
@@ -244,9 +255,19 @@ export const Profile = () => {
                   {!showMorehotels
                     ? user?.hotels
                         ?.slice(0, 2)
-                        ?.map((id) => <AddedHotels id={id} key={id} />)
+                        ?.map((id) => (
+                          <AddedHotels
+                            id={id}
+                            key={id}
+                            setHotelsAdded={setHotelsAdded}
+                          />
+                        ))
                     : user?.hotels?.map((id) => (
-                        <AddedHotels id={id} key={id} />
+                        <AddedHotels
+                          id={id}
+                          key={id}
+                          setHotelsAdded={setHotelsAdded}
+                        />
                       ))}
                 </div>
               )}

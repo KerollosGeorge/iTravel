@@ -59,7 +59,7 @@ export const Login = () => {
           <img
             alt="logo"
             src="../images/logo.png"
-            className="w-[120px] h-[120px] max-sm:w-[80px] max-sm:h-[80px] rounded-[100%] max-md:transition-all"
+            className="w-[300px] h-[120px] max-sm:w-[80px] max-sm:h-[80px] rounded-[100%] max-md:transition-all"
           />
           <p className="texte-center text-lg">iTravel</p>
         </div>

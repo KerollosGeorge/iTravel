@@ -202,7 +202,7 @@ export const Register = () => {
             </span>
           )}
         </div>
-        <div className="absolute bottom-10 left-0 w-full flex justify-around text-black">
+        <div className="absolute bottom-5 left-0 w-full flex justify-around text-black">
           <p>
             already have acount{" "}
             <Link className="text-sm text-blue-700" to="/login">
@@ -218,7 +218,7 @@ export const Register = () => {
           <img
             alt="logo"
             src="../images/logo.png"
-            className="w-[120px] h-[120px] text-center rounded-[100%]"
+            className="w-[300px] h-[120px] text-center rounded-[100%]"
           />
           <p className="texte-center text-3xl">iTravel</p>
         </div>

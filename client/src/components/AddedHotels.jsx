@@ -15,8 +15,7 @@ import { Loading } from "./Loading";
 import { Review } from "./Review";
 import { darkModeContext } from "../context/DarkMoodContext";
 
-export const AddedHotels = ({ id }) => {
-  console.log(id);
+export const AddedHotels = ({ id, setHotelsAdded }) => {
   const { user } = useContext(AuthContext);
   const { darkMode } = useContext(darkModeContext);
   const { data, loading, error } = useFetch(
@@ -61,7 +60,7 @@ export const AddedHotels = ({ id }) => {
         `https://itravel-apis.vercel.app/api/hotels/${user._id}/${id}`
       );
       setMsg(res.data);
-
+      setHotelsAdded((prev) => prev.filter((item) => item !== id));
       const msgTime = setTimeout(() => {
         setMsg("");
         setIsOpen(false);
@@ -76,14 +75,6 @@ export const AddedHotels = ({ id }) => {
       return () => clearTimeout(errTime);
     }
   };
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (!data) {
-    return <div>Data not found</div>;
-  }
   return (
     <>
       {data && (

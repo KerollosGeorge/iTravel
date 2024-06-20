@@ -98,7 +98,7 @@ export const Rooms = ({ id, max, searchData }) => {
           <p className="ml-[14%] mb-2">
             Select from our Rooms{" "}
             <span
-              className="text-sm cursor-pointer"
+              className="text-sm cursor-pointer text-blue-700"
               onClick={() => setShowRooms(!showRooms)}
             >
               show rooms...
