@@ -49,13 +49,13 @@ export const AdminGetAllHotels = async (req, res, next) => {
 
 //get a specific hotel
 export const GetHotel = async (req, res, next) => {
-  // const date = new Date();
-  // const formattedDate =
-  //   date.toISOString().split("T")[0] + "T22:00:00.000+00:00";
+  const date = new Date();
+  const formattedDate =
+    date.toISOString().split("T")[0] + "T22:00:00.000+00:00";
 
   try {
     const hotel = await Hotel.findById(req.params.id);
-    /*  if (hotel.unavailableDates?.length > 0) {
+    if (hotel.unavailableDates?.length > 0) {
       const endDate = new Date(hotel.unavailableDates[1]);
       endDate.setDate(endDate.getDate() + 1); // add one day to endDate
 
@@ -63,7 +63,7 @@ export const GetHotel = async (req, res, next) => {
         hotel.unavailableDates = [];
         await hotel.save();
       }
-    } */
+    }
     res.status(StatusCodes.OK).json(hotel);
   } catch (error) {
     next(error);
@@ -350,7 +350,8 @@ export const DeleteAddedHotel = async (req, res, next) => {
     }
 
     // Remove hotel ID from user.hotels array
-    await User.findByIdAndUpdate(userId, { $pull: { hotels: hotelId } });
+    await User.findByIdAndUpdate(userId, { $pull: { hotels: hotelId } }); // wait for this to resolve
+    await user.save(); // save the updated user document
 
     await Promise.all(
       hotel?.rooms?.map((room) => {
@@ -360,6 +361,7 @@ export const DeleteAddedHotel = async (req, res, next) => {
         return Review.findByIdAndDelete(reviewId);
       })
     );
+
     try {
       //delete the hotel
       await Hotel.findByIdAndDelete(hotelId);
