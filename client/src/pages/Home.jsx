@@ -39,21 +39,23 @@ export const Home = () => {
         <Navbar />
       </div>
       <ReviewUs />
-      <img
-        src={images[start]}
-        alt=""
-        className=" relative z-10 w-full self-center top-[80px] h-[615px] grayscale-[10%] brightness-[85%] mb-20 "
-      />
-      <div className=" absolute top-[25%] left-[10%] flex flex-col text-white z-10">
-        <h1 className="text-5xl font-bold mb-9">Enjoy your Stay ...</h1>
-        <p className="text-xl">Planning to Travel!</p>
-        <p className="text-xl w-[450px]">
-          With <span>ITravel</span> Search and book one of the luxury hotel
-          rooms in your destination..
-        </p>
-      </div>
-      <div className="w-[80%] absolute bottom-0 max-md:w-full outline-none border-none z-10">
-        <SearchBar />
+      <div className=" relative w-full flex flex-col items-center justify-center">
+        <img
+          src={images[start]}
+          alt=""
+          className=" z-10 w-full self-center top-[80px] h-[615px] grayscale-[10%] brightness-[85%] mb-20 "
+        />
+        <div className=" absolute top-[25%] left-[10%] flex flex-col text-white z-10">
+          <h1 className="text-5xl font-bold mb-9">Enjoy your Stay ...</h1>
+          <p className="text-xl">Planning to Travel!</p>
+          <p className="text-xl w-[450px]">
+            With <span>ITravel</span> Search and book one of the luxury hotel
+            rooms in your destination..
+          </p>
+        </div>
+        <div className="w-[80%] absolute bottom-0 max-md:w-full outline-none border-none z-10 self-center">
+          <SearchBar />
+        </div>
       </div>
       <PropertyList />
       <PopularCities />

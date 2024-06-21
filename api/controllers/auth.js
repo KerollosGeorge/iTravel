@@ -129,7 +129,7 @@ export const forget_password = async (req, res, next) => {
       subject: "Reset Password",
       html:
         "<p>Please click on the following link to verify your email address:</p>" +
-        `http://localhost:3000/reset_password/${user._id}/${token}`,
+        `https://itravel-gamma.vercel.app/reset_password/${user._id}/${token}`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
