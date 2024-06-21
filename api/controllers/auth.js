@@ -120,7 +120,7 @@ export const forget_password = async (req, res, next) => {
       secure: true,
       auth: {
         user: "kgo91754@gmail.com",
-        pass: "pere jxev xsaq lmmx",
+        pass: "jiyq dish xfkd aaio",
       },
     });
     const mailOptions = {
