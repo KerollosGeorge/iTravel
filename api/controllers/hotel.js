@@ -285,8 +285,13 @@ export const UpdateHotelAvailability = async (req, res, next) => {
 export const DeleteHotel = async (req, res, next) => {
   const hotelId = req.params.id;
   try {
-    //find the hotel first to define and delete its rooms first
+    // Find the hotel and its associated user
     const hotel = await Hotel.findById(hotelId);
+    const user = await User.findOne({ hotels: { $in: [hotelId] } });
+    // Remove hotel from user's hotels array
+    if (user) {
+      await User.findByIdAndUpdate(user._id, { $pull: { hotels: hotelId } });
+    }
     //delete the hotel images from disk storage
     if (hotel.photos && hotel.photos.length > 0) {
       hotel.photos.forEach((image) => {
@@ -312,11 +317,6 @@ export const DeleteHotel = async (req, res, next) => {
         return Review.findByIdAndDelete(reviewId);
       })
     );
-
-    /* for (let i = 0; i < hotel.rooms.length; i++) {
-            const roomId = hotel.rooms[i];
-            await Room.findByIdAndDelete(roomId);
-        } */
     try {
       //delete the hotel
       await Hotel.findByIdAndDelete(hotelId);

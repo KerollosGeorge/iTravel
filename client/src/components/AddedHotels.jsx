@@ -35,7 +35,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
       : `https://itravel-apis.vercel.app/Images/${photo}`;
   };
   useEffect(() => {
-    if (data) {
+    if (data && data.length > 0) {
       const fetchData = async () => {
         try {
           const reviewsData = await Promise.all(
