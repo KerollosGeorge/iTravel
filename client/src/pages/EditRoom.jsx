@@ -9,82 +9,66 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { darkModeContext } from "../context/DarkMoodContext";
 
-export const EditHotel = () => {
+export const EditRoom = () => {
   const location = useLocation();
-  const hotelId = location.pathname.split("/")[3];
+  const roomId = location.pathname.split("/")[3];
   const navigate = useNavigate();
 
-  const [HotelName, setHotelName] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [distance, setDistance] = useState("");
-  const [title, setTitle] = useState("");
-  const [images, setImages] = useState();
+  const [images, setImages] = useState("");
   const [urlImages, setUrlImages] = useState("");
-  const [description, setDescription] = useState("");
-  const [rating, setRating] = useState();
-  const [cheapestPrice, setCheapestPrice] = useState();
-  const [type, setType] = useState("");
-  const [featured, setFeatured] = useState();
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [maxPeople, setMaxPeople] = useState("");
+  const [desc, setDesc] = useState("");
+  const [rooms, setRooms] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [start, setStart] = useState(0);
   const { darkMode } = useContext(darkModeContext);
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
-  const [disabled, setDisabled] = useState(true);
-  const [start, setStart] = useState(0);
   const [imagesArray, setImagesArray] = useState([]);
   const [imagesArrayCheck, setImagesArrayCheck] = useState([]);
 
   const { data, loading, error } = useFetch(
-    `https://itravel-apis.vercel.app/api/hotels/find/${hotelId}`
+    `https://itravel-apis.vercel.app/api/rooms/${roomId}`
   );
 
   useEffect(() => {
     if (data) {
-      setHotelName(data?.HotelName);
-      setCountry(data?.country);
-      setCity(data?.city);
-      setAddress(data?.address);
-      setDistance(data?.distance);
-      setTitle(data?.title);
-      setDescription(data?.description);
-      setRating(data?.rating);
-      setCheapestPrice(data?.cheapestPrice);
-      setType(data?.type);
-      setFeatured(data?.featured);
+      setTitle(data.title);
+      setPrice(data.price);
+      setMaxPeople(data.maxPeople);
+      setDesc(data.desc);
+      if (data.roomNumbers) {
+        setRooms(data.roomNumbers.map((room) => room.number).join(","));
+      }
       setImagesArrayCheck(data.photos);
     }
   }, [data, loading]);
 
   axios.defaults.withCredentials = true;
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (
-      HotelName === "" ||
-      country === "" ||
-      city === "" ||
-      address === "" ||
-      distance === "" ||
       title === "" ||
-      description === "" ||
-      rating === "" ||
-      cheapestPrice === ""
+      desc === "" ||
+      maxPeople === "" ||
+      price === "" ||
+      rooms === ""
+      /* imagesArray.length === 0 */
     ) {
-      setErr("Please Fill all Fields");
+      setErr("Please Fill all Fields or add some images");
       const errorTime = setTimeout(() => {
         setErr("");
       }, 2000);
       return () => clearTimeout(errorTime);
     } else if (
-      HotelName === data.HotelName &&
-      country === data.country &&
-      city === data.city &&
-      address === data.address &&
-      distance === data.distance &&
       title === data.title &&
-      description === data.description &&
-      rating === data.rating &&
-      cheapestPrice === data.cheapestPrice &&
+      desc === data.desc &&
+      maxPeople === data.maxPeople &&
+      price === data.price &&
+      rooms === data.roomNumbers.map((room) => room.number).join(",") &&
       imagesArrayCheck === data.photos
     ) {
       setErr("No Changes at data are detected!");
@@ -94,6 +78,14 @@ export const EditHotel = () => {
       return () => clearTimeout(errorTime);
     } else {
       try {
+        const roomNumbersArray = Array.isArray(rooms)
+          ? rooms
+          : rooms?.length > 0
+          ? rooms
+              .split(",")
+              .map((room) => ({ number: room, unavailableDates: [] }))
+          : [];
+
         const formData = new FormData();
         if (images) {
           await Promise.all(
@@ -103,28 +95,22 @@ export const EditHotel = () => {
           );
         }
         formData.append("urlImages", urlImages);
-        formData.append("HotelName", HotelName);
-        formData.append("country", country);
-        formData.append("city", city);
-        formData.append("address", address);
-        formData.append("distance", distance);
         formData.append("title", title);
-        formData.append("description", description);
-        formData.append("rating", rating);
-        formData.append("cheapestPrice", cheapestPrice);
-        formData.append("type", type);
-        formData.append("featured", featured);
+        formData.append("price", price);
+        formData.append("maxPeople", maxPeople);
+        formData.append("desc", desc);
+        formData.append("roomNumbers", JSON.stringify(roomNumbersArray));
         const res = await axios.put(
-          `https://itravel-apis.vercel.app/api/hotels/${hotelId}`,
+          `https://itravel-apis.vercel.app/api/rooms/${roomId}`,
           formData,
           {
             headers: { "content-type": "multipart/form-data" },
           }
         );
-        setMsg(res.data?.msg);
+        setMsg(res.data.msg);
         const timeout = setTimeout(() => {
           setMsg("");
-          navigate("/hotels");
+          navigate("/rooms");
         }, 2000);
         return () => clearTimeout(timeout);
       } catch (err) {
@@ -136,6 +122,7 @@ export const EditHotel = () => {
       }
     }
   };
+
   const getImageSource = (photo) => {
     if (!photo) return;
     return photo.startsWith("http")
@@ -192,10 +179,8 @@ export const EditHotel = () => {
       }
     }
     // Set images only if data is not null or undefined
-    if (data) {
-      setImagesArrayCheck([]);
-      setImages(e.target.files);
-    }
+    setImagesArrayCheck([]);
+    setImages(e.target.files);
   };
 
   const handleTextChange = (e) => {
@@ -213,6 +198,7 @@ export const EditHotel = () => {
       setUrlImages(e.target.value.split(","));
     }
   };
+
   return (
     <div className="flex w-full">
       <div className="w-[.5px] h-full bg-[#999]"></div>
@@ -225,7 +211,7 @@ export const EditHotel = () => {
       >
         <Navbar />
         <h2 className="text-3xl  w-[1200px] flex flex-col min-w-[400px] self-center ml-6 mb-[2px] text-start p-2 pl-5 shadow-md shadow-[gray]">
-          Edit {HotelName} Hotel
+          Edit {title} Room
         </h2>
         {loading ? (
           <Loading />
@@ -300,173 +286,83 @@ export const EditHotel = () => {
                     onClick={Prev}
                   />
                 </div>
-
-                <div className=" grid grid-cols-2 gap-4 ">
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="hotelName" className=" ml-1">
-                      Hotel Name
-                    </label>
-                    <input
-                      type="text"
-                      name="hotelName"
-                      id="hotelName"
-                      value={HotelName}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px]   "
-                      onChange={(e) => {
-                        setHotelName(e.target.value);
-                      }}
-                    ></input>
+                <div className=" w-full grid grid-rows-2 gap-4 place-items-center">
+                  <div className=" grid grid-cols-2 gap-4 ">
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="title" className=" ml-1">
+                        Title
+                      </label>
+                      <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        value={title}
+                        className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
+                        onChange={(e) => {
+                          setTitle(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="price" className=" ml-1">
+                        Price: $
+                      </label>
+                      <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        value={price}
+                        className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col w-full">
+                      <label htmlFor="maxpeople" className=" ml-1">
+                        MaxPeople
+                      </label>
+                      <input
+                        type="number"
+                        name="maxpeople"
+                        id="maxpeople"
+                        value={maxPeople}
+                        className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
+                        onChange={(e) => {
+                          setMaxPeople(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="flex flex-col w-full ">
+                      <label htmlFor="rooms" className=" ml-1">
+                        Room Numbers
+                      </label>
+                      <input
+                        type="text"
+                        name="rooms"
+                        id="rooms"
+                        value={rooms}
+                        className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px]   "
+                        onChange={(e) => {
+                          setRooms(e.target.value);
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="title" className=" ml-1">
-                      Title
-                    </label>
-                    <input
-                      type="text"
-                      name="title"
-                      id="title"
-                      value={title}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setTitle(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="relative flex flex-col w-full">
-                    <label htmlFor="distance" className=" ml-1">
-                      Distance from City Center
-                    </label>
-                    <input
-                      type="distance"
-                      name="distance"
-                      id="distance"
-                      value={distance}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setDistance(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="flex flex-col w-full ">
-                    <label htmlFor="address" className=" ml-1">
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      name="address"
-                      id="address"
-                      value={address}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setAddress(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-
-                  <div className="flex flex-col w-full ">
-                    <label htmlFor="country" className=" ml-1">
-                      Country
-                    </label>
-                    <input
-                      type="text"
-                      name="country"
-                      id="country"
-                      value={country}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setCountry(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="city" className=" ml-1">
-                      City
-                    </label>
-                    <input
-                      type="text"
-                      name="city"
-                      id="city"
-                      value={city}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setCity(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="price" className=" ml-1">
-                      Price: $
-                    </label>
-                    <input
-                      type="number"
-                      name="price"
-                      id="price"
-                      value={cheapestPrice}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setCheapestPrice(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="flex flex-col w-full">
-                    <label htmlFor="rating" className=" ml-1">
-                      Rating
-                    </label>
-                    <input
-                      type="number"
-                      name="rating"
-                      id="rating"
-                      value={rating}
-                      className="w-[350px] h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="flex flex-col w-full ">
-                    <label htmlFor="description" className=" ml-1 mb-1">
+                  <div className="flex flex-col w-[750px] ">
+                    <label htmlFor="desc" className=" ml-1 mb-1">
                       Description
                     </label>
-
                     <textarea
-                      name="description"
-                      id="description"
-                      rows="4"
-                      value={description}
-                      className=" w-[350px] border-2 border-[gray] focus:scale-[1.01] p-2  bg-transparent"
+                      name="desc"
+                      id="desc"
+                      rows="5"
+                      value={desc}
+                      className=" border-2 border-[gray] focus:scale-[1.01] p-2 bg-transparent"
                       onChange={(e) => {
-                        setDescription(e.target.value);
+                        setDesc(e.target.value);
                       }}
                     ></textarea>
-                  </div>
-
-                  <div className=" flex w-[350px] justify-around items-center">
-                    <div className="flex flex-col gap-1">
-                      <label htmlFor="type">Type</label>
-                      <input
-                        type="text"
-                        name="type"
-                        id="type"
-                        value={type}
-                        className=" h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                        onChange={(e) => {
-                          setType(e.target.value);
-                        }}
-                      ></input>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label htmlFor="featured">Is Featured?</label>
-                      <input
-                        type="text"
-                        name="featured"
-                        id="featured"
-                        value={featured}
-                        className=" h-9 border-b-2 border-[gray] focus:scale-[1.04] indent-[7px] "
-                        onChange={(e) => {
-                          setFeatured(e.target.value);
-                        }}
-                      ></input>
-                    </div>
                   </div>
                 </div>
               </div>

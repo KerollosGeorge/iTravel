@@ -118,7 +118,7 @@ export const ViewRoom = () => {
               <p className="pl-2">{data?.desc}</p>
               <div className="flex items-center justify-around">
                 <button
-                  // onClick={() => navigate(`/hotels/edit/${id}`)}
+                  onClick={() => navigate(`/rooms/edit/${roomId}`)}
                   className=" border-dashed border-[1px] border-[#59ff40] rounded-md py-1 px-2 text-green-700 text-center hover:bg-green-700  hover:text-white hover:transition-all transition-all"
                 >
                   Edit
