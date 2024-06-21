@@ -113,33 +113,30 @@ export const forget_password = async (req, res, next) => {
       expiresIn: "10s",
     });
     res.status(StatusCodes.OK).json({ Status: "Success" });
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: "kgo91754@gmail.com",
-        pass: "pere jxev xsaq lmmx",
-      },
-    });
-    const mailOptions = {
-      from: "kgo91754@gmail.com",
+
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const msg = {
       to: user.email,
+      from: "kgo91754@gmail.com",
       subject: "Reset Password",
-      html:
-        "<p>Please click on the following link to verify your email address:</p>" +
-        `https://itravel-gamma.vercel.app/reset_password/${user._id}/${token}`,
+      html: `
+        <p>Please click on the following link to verify your email address:</p>
+        <a href="https://itravel-gamma.vercel.app/reset_password/${user._id}/${token}">
+          https://itravel-gamma.vercel.app/reset_password/${user._id}/${token}
+        </a>
+      `,
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log("Error in sending email  " + error);
-        return true;
-      } else {
-        return res.send({ Status: "Success" });
-      }
-    });
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log("Email sent successfully");
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
   } catch (error) {
     next(error);
   }
