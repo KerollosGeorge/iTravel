@@ -161,9 +161,12 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                     View
                   </button>
 
-                  <Link className=" border-dashed border-[1px] border-[#59ff40] rounded-md py-1 px-2 text-green-700 text-center hover:bg-green-700  hover:text-white hover:transition-all transition-all">
-                    <button>Edit</button>
-                  </Link>
+                  <button
+                    onClick={() => navigate(`/hotels/edit/${id}`)}
+                    className=" border-dashed border-[1px] border-[#59ff40] rounded-md py-1 px-2 text-green-700 text-center hover:bg-green-700  hover:text-white hover:transition-all transition-all"
+                  >
+                    Edit
+                  </button>
                   <button
                     onClick={() => setIsOpen(true)}
                     className=" border-dashed border-[1px] border-[#e83737] rounded-md py-1 px-2 text-red-700 text-center hover:bg-red-600 hover:text-white hover:transition-all transition-all"

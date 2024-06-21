@@ -26,11 +26,11 @@ router.put("/availability/:id", UpdateRoomAvailability);
 
 //admin Accessability
 
-router.post("/", /* verifyAdmin, */ upload, CreateRoom);
+router.post("/", upload, CreateRoom);
 
-router.put("/:id", /*  verifyAdmin, */ upload, UpdateRoom);
+router.put("/:id", upload, UpdateRoom);
 
-router.delete("/:hotelId/:roomId", verifyAdmin, DeleteRoom);
-router.delete("/:roomId", /*  verifyAdmin, */ DeleteSpecificRoom);
+router.delete("/:hotelId/:roomId", DeleteRoom);
+router.delete("/:roomId", DeleteSpecificRoom);
 
 export default router;

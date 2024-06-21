@@ -1,6 +1,6 @@
 import useFetch from "../hooks/useFetch";
 import { useLocation } from "react-router-dom";
-import { Rooms } from "../components/Rooms";
+import { RoomsAdded } from "../components/RoomsAdded";
 import { Navbar } from "../components/Navbar";
 import { StarRating } from "../components/StarsRating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -143,7 +143,7 @@ export const ViewHotel = () => {
                 <h1 className=" text-center text-2xl text-red-400 font-bold">
                   Rooms
                 </h1>
-                {data?.rooms.length > 0 && <Rooms key={id} id={id} />}
+                {data?.rooms.length > 0 && <RoomsAdded key={id} id={id} />}
               </div>
             )}
           </>
