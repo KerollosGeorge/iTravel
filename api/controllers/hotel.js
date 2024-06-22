@@ -18,7 +18,7 @@ export const GetAllHotels = async (req, res, next) => {
     const AllHotels = await Hotel.find({
       ...others,
       cheapestPrice: { $gte: min || 1, $lte: max || 10000000 },
-      // unavailableDates: [],
+      unavailableDates: [],
     }).limit(limit);
 
     const hotels = await Promise.all(
