@@ -114,8 +114,6 @@ export const Payment = () => {
                 return res.data;
               }
               const order = await actions.order.capture();
-              console.log(order);
-
               setNotHotel(false);
               setRoomNumbers(false);
               setMsg(false);

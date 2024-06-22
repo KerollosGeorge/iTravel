@@ -105,60 +105,6 @@ export const CreateRoom = async (req, res, next) => {
   }
 };
 
-/** 
- export const CreateRoom = async (req, res, next) => {
-  const { files, body } = req;
-  const { urlImages } = body;
-  let photos = [];
-
-  // handle files
-  if (files && files.length > 0) {
-    photos = files.map((file) => file.filename);
-  }
-
-  // handle urls
-  if (urlImages) {
-    const Images = urlImages.split(",");
-    photos = [...photos, ...Images];
-  }
-
-  const newRoom = new Room({ photos, ...req.body });
-  try {
-    const savedRoom = await newRoom.save();
-    try {
-      // check if roomNumbers is an array before mapping over it
-      if (Array.isArray(req.body.roomNumbers)) {
-        const convertedRoomNumbers = req.body.roomNumbers.map(
-          (roomNumber) => roomNumber.number
-        );
-        await Hotel.findOneAndUpdate(
-          { HotelName: req.body.HotelName },
-          {
-            $push: { rooms: savedRoom._id },
-            $push: { roomNumbers: { $each: convertedRoomNumbers } },
-          }
-        );
-      } else {
-        await Hotel.findOneAndUpdate(
-          { HotelName: req.body.HotelName },
-          {
-            $push: { rooms: savedRoom._id },
-          }
-        );
-      }
-    } catch (error) {
-      next(error);
-    }
-    res
-      .status(StatusCodes.CREATED)
-      .json({ savedRoom, msg: "Room has been Created successfully" });
-  } catch (error) {
-    next(error);
-  }
-};
-
-*/
-
 //update info of a specifc room
 export const UpdateRoom = async (req, res, next) => {
   const { files, body } = req;
