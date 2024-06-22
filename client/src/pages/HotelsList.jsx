@@ -11,10 +11,10 @@ import { Loading } from "../components/Loading";
 
 export const HotelsList = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
-  const [dates, setDates] = useState(location.state.date);
+  const [destination, setDestination] = useState(location?.state?.destination);
+  const [dates, setDates] = useState(location?.state?.date);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
+  const [options, setOptions] = useState(location?.state?.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
   const [showMore, setshowMore] = useState(false);
@@ -28,7 +28,6 @@ export const HotelsList = () => {
     reFetch();
   };
   const { darkMode } = useContext(darkModeContext);
-
   return (
     <div className="flex flex-col gap-[50px] w-full items-center min-w-max">
       <Navbar />
@@ -84,8 +83,8 @@ export const HotelsList = () => {
               onClick={() => setOpenDate(!openDate)}
               className=" cursor-pointer text-gray-400 bg-white p-2"
             >
-              {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
-                dates[0].endDate,
+              {`${format(dates?.[0].startDate, "MM/dd/yyyy")} to ${format(
+                dates?.[0].endDate,
                 "MM/dd/yyyy"
               )}`}
             </span>

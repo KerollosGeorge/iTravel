@@ -23,7 +23,6 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
   );
   const [reviewData, setReviewData] = useState([]);
   const [openReview, setOpenReviews] = useState(false);
-  const [addReview, setAddReview] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [err, setErr] = useState();
   const [msg, setMsg] = useState();
@@ -119,7 +118,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                     ))}
                   </span>
                 )}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 ">
                   <button
                     onClick={() => setOpenReviews(!openReview)}
                     className="border-[1px] border-gray-500 text-sm py-[1px] px-1"
@@ -137,23 +136,7 @@ export const AddedHotels = ({ id, setHotelsAdded }) => {
                     </span>
                   </div>
                 </div>
-                <p
-                  className=" cursor-pointer hover:scale-[1.01] transition-all"
-                  onClick={() => {
-                    setAddReview(!addReview);
-                  }}
-                >
-                  Add Review
-                </p>
-                {addReview && (
-                  <Review
-                    setAddReview={setAddReview}
-                    hotelId={data._id}
-                    name={data.HotelName}
-                    type={data.type}
-                  />
-                )}
-                <div className="flex items-center justify-around">
+                <div className="flex items-center justify-around mt-8">
                   <button
                     onClick={() => navigate(`/hotels/${id}`)}
                     className=" border-dashed border-[1px] border-[#4040ff] rounded-md py-1 px-2 text-blue-700 text-center hover:bg-blue-700  hover:text-white hover:transition-all transition-all"

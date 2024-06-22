@@ -52,7 +52,7 @@ export const EditHotel = () => {
       setCheapestPrice(data?.cheapestPrice);
       setType(data?.type);
       setFeatured(data?.featured);
-      setImagesArrayCheck(data.photos);
+      setImagesArrayCheck(data?.photos);
     }
   }, [data, loading]);
 
@@ -124,7 +124,7 @@ export const EditHotel = () => {
         setMsg(res.data?.msg);
         const timeout = setTimeout(() => {
           setMsg("");
-          navigate("/hotels");
+          navigate("/");
         }, 2000);
         return () => clearTimeout(timeout);
       } catch (err) {

@@ -57,39 +57,43 @@ export const Review = ({ setAddReview, hotelId, name, type }) => {
     }
   };
   return (
-    <div className="fixed top-[18%] w-[40%] bg-gray-700 z-50 flex flex-col rounded-xl items-center gap-5 min-w-[400px] max-md:top-[12%]">
-      <FontAwesomeIcon
-        className=" self-end p-2 bg-red-400 rounded-bl-xl rounded-tr-xl text-xl text-white cursor-pointer hover:bg-red-500"
-        onClick={() => {
-          setReview("");
-          setRating(0);
-          setAddReview(false);
-        }}
-        icon={faXmark}
-      />
-      {msg && (
-        <span className=" text-center text-green-600 text-lg">{msg}</span>
-      )}
-      <h1 className="text-center text-3xl font-semibold text-white">
-        Review For {name} {type}
-      </h1>
-      <textarea
-        name=""
-        id=""
-        rows="10"
-        className=" bg-transparent text-white text-lg p-1 outline-none border-[1px] border-gray-400 w-[80%] resize-none"
-        placeholder="Write Your Review and Thoughts here..."
-        value={review}
-        onChange={(e) => setReview(e.target.value)}
-      ></textarea>
-      <StarRatingInput rating={rating} setRating={setRating} />
-      <button
-        className=" bg-red-400 py-2 px-4 mb-2 text-lg text-white rounded-md hover:bg-red-500"
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
-      {err && <span className=" text-center text-red-500 text-lg">{err}</span>}
+    <div className=" w-full relative ">
+      <div className=" fixed left-[30%] top-[18%] w-[40%] bg-gray-700 z-50 flex flex-col rounded-xl items-center gap-5 min-w-[400px] max-md:top-[12%] max-md:left-[10%]">
+        <FontAwesomeIcon
+          className=" self-end p-2 bg-red-400 rounded-bl-xl rounded-tr-xl text-xl text-white cursor-pointer hover:bg-red-500"
+          onClick={() => {
+            setReview("");
+            setRating(0);
+            setAddReview(false);
+          }}
+          icon={faXmark}
+        />
+        {msg && (
+          <span className=" text-center text-green-600 text-lg">{msg}</span>
+        )}
+        <h1 className="text-center text-3xl font-semibold text-white">
+          Review For {name} {type}
+        </h1>
+        <textarea
+          name=""
+          id=""
+          rows="10"
+          className=" bg-transparent text-white text-lg p-1 outline-none border-[1px] border-gray-400 w-[80%] resize-none"
+          placeholder="Write Your Review and Thoughts here..."
+          value={review}
+          onChange={(e) => setReview(e.target.value)}
+        ></textarea>
+        <StarRatingInput rating={rating} setRating={setRating} />
+        <button
+          className=" bg-red-400 py-2 px-4 mb-2 text-lg text-white rounded-md hover:bg-red-500"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+        {err && (
+          <span className=" text-center text-red-500 text-lg">{err}</span>
+        )}
+      </div>
     </div>
   );
 };

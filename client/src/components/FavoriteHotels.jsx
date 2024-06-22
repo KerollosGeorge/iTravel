@@ -82,7 +82,7 @@ export const FavoriteHotels = ({ id }) => {
                 alt={data.HotelName}
                 className="w-[300px] h-[220px] object-cover p-2 max-md:w-full"
               />
-              <div className="flex flex-col gap-2 p-1 w-[330px] max-md:p-2">
+              <div className=" flex flex-col gap-2 p-1 w-[330px] max-md:p-2">
                 <h3 className=" font-semibold text-xl">{data.HotelName}</h3>
                 <span className="flex gap-1 text-sm">
                   {<StarRating rating={data.rating} />} {data.rating} Stars{" "}
