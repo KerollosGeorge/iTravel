@@ -121,7 +121,7 @@ export const Payment = () => {
               const successMsg = setTimeout(() => {
                 setSuccess(false);
                 navigate("/");
-              }, 3000);
+              }, 2000);
               return () => clearTimeout(successMsg);
             } catch (error) {
               console.log(error);
