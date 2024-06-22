@@ -31,7 +31,6 @@ export const Profile = () => {
   const { darkMode } = useContext(darkModeContext);
   const [userInfo, setUserInfo] = useState(user);
 
-  console.log(userInfo.hotels);
   useEffect(() => {
     const updateHotelsAdded = async () => {
       if (hotelsAdded && hotelsAdded.length > 0) {

@@ -142,12 +142,12 @@ export const FavoriteHotels = ({ id }) => {
                     onClick={() => addFavorite()}
                   />
 
-                  {/*               <Link
-                to={`/hotels/${data._id}/1`}
-                className="w-[90%] bg-blue-700 text-white p-[2px] hover:bg-blue-600 hover:scale-[1.04] transition-all text-center gap-3"
-              >
-                <button>View Details</button>
-              </Link> */}
+                  <Link
+                    to={`/hotels/${data._id}/0`}
+                    className="w-[90%] bg-blue-700 text-white p-[2px] hover:bg-blue-600 hover:scale-[1.04] transition-all text-center gap-3"
+                  >
+                    <button>View Details</button>
+                  </Link>
                 </div>{" "}
                 <p
                   className=" cursor-pointer hover:scale-[1.01] transition-all"

@@ -55,13 +55,13 @@ export const ViewHotel = () => {
 
   return (
     <div className=" w-full">
-      <div className=" w-full flex flex-col gap-4 ">
+      <div className=" w-full flex flex-col gap-4 items-center justify-center">
         <Navbar />
         {loading ? (
           <Loading />
         ) : (
           <>
-            <div className="flex flex-col min-w-[500px] self-center max-lg:w-[350px]">
+            <div className=" max-w-[800px] flex flex-col min-w-[500px] self-center max-lg:w-[350px]">
               <div className=" relative">
                 <img
                   crossorigin="anonymous"
