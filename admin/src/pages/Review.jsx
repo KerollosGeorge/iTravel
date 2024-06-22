@@ -26,9 +26,9 @@ export const Review = () => {
             <div>There is no Review with this ID {reviewId}</div>
           ) : (
             <div className="w-[80vw]">
-              <div className="p-[30px] shadow-lg shadow-[gray] rounded-md min-w-[450px] ml-5 mt-3 flex flex-col gap-4 h-[300px] ">
+              <div className="p-[30px] shadow-lg shadow-[gray] rounded-md min-w-[450px] ml-5 mt-3 flex flex-col gap-4  ">
                 <span className="text-3xl font-bold">Review Information</span>
-                <div className=" min-w-max pl-7 flex flex-col gap-3">
+                <div className="pl-7 flex flex-col gap-3">
                   <p className=" text-lg font-normal">
                     User : {data?.user?.firstName} {data?.user?.lastName}
                   </p>
@@ -38,7 +38,7 @@ export const Review = () => {
                   <p className=" text-lg font-normal">
                     Rating : {data?.review?.rating}
                   </p>
-                  <p className=" text-lg font-normal">
+                  <p className="flex flex-wrap h-max text-lg font-normal">
                     Comment : {data?.review?.content}
                   </p>
                 </div>
