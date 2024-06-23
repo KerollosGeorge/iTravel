@@ -34,7 +34,7 @@ export const FavoriteHotels = ({ id }) => {
       setFavorite(id);
     };
     Favorite();
-    if (data && data.length > 0) {
+    if (data) {
       const fetchData = async () => {
         try {
           const reviewsData = await Promise.all(
@@ -42,6 +42,7 @@ export const FavoriteHotels = ({ id }) => {
               const Reviews = await axios.get(
                 `https://itravel-apis.vercel.app/api/reviews/review/${item}`
               );
+              console.log(Reviews);
               return { review: Reviews.data };
             })
           );
